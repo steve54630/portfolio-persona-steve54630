@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Knowledge",
+    "value": 4,
+    "description": "Curiosité intellectuelle et apprentissage continu. Toujours à l'affût des dernières technologies, frameworks et bonnes pratiques. Lit régulièrement la documentation, suit des formations, expérimente avec de nouveaux outils. Capacité à comprendre rapidement des concepts complexes et à les intégrer dans ses projets.",
+    "exp": 80
+  },
+  {
+    "name": "Guts",
+    "value": 4,
+    "description": "Audace à relever des défis techniques et sortir de sa zone de confort. N'hésite pas à se lancer dans des projets ambitieux avec des technologies inconnues. Prend des risques calculés pour innover et repousser ses limites. Reste motivé face aux obstacles et aux échecs.",
+    "exp": 75
+  },
+  {
+    "name": "Proficiency",
+    "value": 3,
+    "description": "Maîtrise technique solide avec un code bien structuré respectant les bonnes pratiques. Architectures claires, code lisible et maintenable. Connaît les design patterns et les applique judicieusement. Capacité à déboguer efficacement et optimiser les performances quand nécessaire.",
+    "exp": 60
+  },
+  {
+    "name": "Kindness",
+    "value": 3,
+    "description": "Collaboration naturelle et partage de connaissances avec l'équipe. Aime aider ses collègues à résoudre leurs problèmes techniques. Contribue positivement à l'ambiance de travail. Esprit d'entraide, mais préfère donner de l'aide plutôt qu'en demander.",
+    "exp": 55
+  },
+  {
+    "name": "Charm",
+    "value": 2,
+    "description": "Communication technique encore en développement. Se débrouille quand il faut présenter mais considère cela comme un point faible à améliorer. Préfère l'action aux discours. Potentiel de progression important dans la présentation de projets et le networking professionnel.",
+    "exp": 25
+  }
+]

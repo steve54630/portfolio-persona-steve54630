@@ -1,0 +1,42 @@
+[
+  {
+    "id": "langages",
+    "name": "Langages de programmation",
+    "icon": "💻"
+  },
+  {
+    "id": "frameworks",
+    "name": "Frameworks",
+    "icon": "🧩"
+  },
+  {
+    "id": "frontend",
+    "name": "Front-end",
+    "icon": "🎨"
+  },
+  {
+    "id": "design",
+    "name": "Design & Expérience",
+    "icon": "📱"
+  },
+  {
+    "id": "bdd",
+    "name": "Bases de données",
+    "icon": "🗄️"
+  },
+  {
+    "id": "archi",
+    "name": "Architecture & Communication",
+    "icon": "🏛️"
+  },
+  {
+    "id": "tests",
+    "name": "Tests",
+    "icon": "🧪"
+  },
+  {
+    "id": "outils",
+    "name": "Outils complémentaires",
+    "icon": "🔧"
+  }
+]

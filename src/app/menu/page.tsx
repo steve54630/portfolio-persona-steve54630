@@ -1,0 +1,79 @@
+"use client";
+
+import MenuButton from "@/components/menu-button";
+import { motion } from "framer-motion";
+import { buttons } from "@/data/menu";
+import { useEffect } from "react";
+
+export default function PortfolioPage() {
+  useEffect(() => {
+    if (window.innerWidth > 768) {
+      const allButtons = Array.from(document.querySelectorAll("button"));
+      allButtons[0].focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (window.innerWidth < 768) return;
+
+      if (e.key in ["ArrowUp", "ArrowDown", "Enter"]) {
+        e.preventDefault();
+      }
+
+      const allButtons = Array.from(document.querySelectorAll("button"));
+      const currentIndex = allButtons.indexOf(
+        document.activeElement as HTMLButtonElement
+      );
+
+      if (document.activeElement === document.body) allButtons[0].focus();
+
+      switch (e.key) {
+        case "ArrowUp":
+          e.preventDefault();
+          const button =
+            allButtons[
+              (currentIndex - 1 + allButtons.length) % allButtons.length
+            ];
+          button.focus();
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          allButtons[(currentIndex + 1) % allButtons.length].focus();
+          break;
+        case "Enter":
+          e.preventDefault();
+          (document.activeElement as HTMLButtonElement)?.click();
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  return (
+    <motion.nav
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col bg-[url('/images/menu-background.jpg')] bg-cover bg-center items-center justify-center h-screen"
+      aria-label="Menu principal navigable avec les fleches du clavier "
+    >
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
+        Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner
+      </div>
+      {buttons.map((button, index) => (
+        <MenuButton
+          key={index}
+          tabIndex={index}
+          title={button.title}
+          explanation={button.explanation}
+          url={button.url}
+          color={button.color}
+        />
+      ))}
+    </motion.nav>
+  );
+}
