@@ -11,7 +11,7 @@ const PersonaButton = forwardRef<HTMLButtonElement, PersonaButtonProps>(
   ({ persona, ...props }: { persona: IPersona }, ref) => {
     return (
       <Link href={`/persona/${persona.id}`} {...props}>
-        <button className="group flex flex-row mx-10 w-3/4 sm:text-3xl">
+        <button className="group flex justify-center items-center flex-row mx-10 w-3/4 text-2xl sm:text-3xl">
           <p className="rounded-2xl py-2 px-5 font-broken-home group-focus:text-black group-focus:bg-blue-600 group-hover:text-black group-hover:bg-blue-600">
             {persona.arcana.name}
           </p>

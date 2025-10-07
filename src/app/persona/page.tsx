@@ -4,26 +4,29 @@ import AnimatedPhrase from "@/components/arcana-phrase";
 import PersonaButton from "@/components/persona-button";
 import { useApi } from "@/hooks/api";
 import { IPersona } from "@/types/persona";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const PersonaPage = () => {
+const PersonasPage = () => {
   const [selectedPersona, setSelectedPersona] = useState<IPersona | null>(null);
   const api = useApi();
   const [personas, setPersonas] = useState([]);
   const router = useRouter();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth > 768) {
       const allButtons = Array.from(document.querySelectorAll("button"));
+      setIsMobile(true);
       allButtons[0].focus();
     }
   }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (window.innerWidth < 768) return;
+      if (window.matchMedia("(pointers: coarse)").matches) return;
 
       if (e.key in ["ArrowUp", "ArrowDown", "Enter"]) {
         e.preventDefault();
@@ -33,8 +36,6 @@ const PersonaPage = () => {
       const currentIndex = allButtons.indexOf(
         document.activeElement as HTMLButtonElement
       );
-
-      if (document.activeElement === document.body) allButtons[0].focus();
 
       switch (e.key) {
         case "ArrowUp":
@@ -74,7 +75,13 @@ const PersonaPage = () => {
   }, []);
 
   return (
-    <main className="gap-3 flex sm:flex-row overflow-hidden flex-col h-screen bg-[url('/images/menu-background.jpg')]">
+    <motion.main
+      className="gap-3 flex sm:flex-row overflow-hidden flex-col h-screen bg-[url('/images/menu-background.jpg')]"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Link href="/menu">
         <button
           id="back-button"
@@ -83,7 +90,7 @@ const PersonaPage = () => {
           Retour
         </button>
       </Link>
-      <section className="relative lg:flex flex-col justify-center items-left hidden sm:max-h-[90vh] sm:w-[1200px]">
+      <section className="relative flex flex-col justify-center items-left sm:max-h-[90vh] sm:w-[1200px]">
         {personas.map((persona: IPersona) => (
           <PersonaButton
             key={persona.id}
@@ -95,7 +102,7 @@ const PersonaPage = () => {
           />
         ))}
       </section>
-      {window.innerWidth > 768 && (
+      {isMobile && (
         <>
           <section className="relative lg:flex justify-center items-center pr-20 hidden sm:h-[90vh] sm:w-[800px]">
             {selectedPersona ? (
@@ -123,8 +130,8 @@ const PersonaPage = () => {
           </div>
         </>
       )}
-    </main>
+    </motion.main>
   );
 };
 
-export default PersonaPage;
+export default PersonasPage;

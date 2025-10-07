@@ -3,10 +3,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+
+  const { id } = await params;
+
   try {
-    const persona = personaService.findPersonaById(params.id);
+    const persona = personaService.findPersonaById(id);
 
     return NextResponse.json(persona);
   } catch (error: any) {
