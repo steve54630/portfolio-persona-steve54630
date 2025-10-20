@@ -4,6 +4,7 @@ import MenuButton from "@/components/menu-button";
 import { motion } from "framer-motion";
 import { buttons } from "@/data/menu";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function PortfolioPage() {
   useEffect(() => {
@@ -45,6 +46,11 @@ export default function PortfolioPage() {
           e.preventDefault();
           (document.activeElement as HTMLButtonElement)?.click();
           break;
+        case "Escape":
+          e.preventDefault();
+          document.getElementById("back-button")?.focus();
+          document.getElementById("back-button")?.click();
+          break;
       }
     };
 
@@ -62,8 +68,17 @@ export default function PortfolioPage() {
       aria-label="Menu principal navigable avec les fleches du clavier "
     >
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
-        Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner
+        Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner, Escape pour
+        retourner à la page d'accueil
       </div>
+      <Link href="/">
+        <button
+          id="back-button"
+          className="absolute top-4 right-4 px-8 py-4 font-drunkenhour text-3xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
+        >
+          Retour
+        </button>
+      </Link>
       {buttons.map((button, index) => (
         <MenuButton
           key={index}
@@ -72,6 +87,7 @@ export default function PortfolioPage() {
           explanation={button.explanation}
           url={button.url}
           color={button.color}
+          type={button.type}
         />
       ))}
     </motion.nav>

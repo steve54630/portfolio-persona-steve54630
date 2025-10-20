@@ -45,9 +45,9 @@
       "typescript",
       "react",
       "nestjs",
-      "spring",
+      "cypress",
       "microservices",
-      "api-rest",
+      "jest",
       "github",
       "docker"
     ],

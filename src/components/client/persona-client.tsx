@@ -29,7 +29,7 @@ export default function PersonaPageClient({ persona }: PersonaProps) {
           break;
         case "Escape":
           document.getElementById("back-button")?.focus();
-          window.location.href = "/persona";
+          document.getElementById("back-button")?.click();
           break;
       }
 
@@ -56,7 +56,7 @@ export default function PersonaPageClient({ persona }: PersonaProps) {
       <article className="flex flex-col flex-1 gap-8 max-w-[600px]">
         <PersonaHeader persona={persona} />
         <ResistTab persona={persona} open={open} setOpen={setOpen} />
-        <p className="text-white bg-black font-bold rounded-2xl text-2xl ml-10 p-5 font-serif">
+        <p className="text-white bg-black font-bold rounded-2xl text-2xl ml-10 p-5 font-sans text-justify">
           {persona.description}
         </p>
         <SkillsTab persona={persona} />

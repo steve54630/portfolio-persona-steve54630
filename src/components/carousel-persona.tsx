@@ -1,10 +1,9 @@
 "use client";
 
-import { CarouselProps, PersonaProps } from "@/types/props";
-import { forwardRef, useState } from "react";
+import { CarouselProps } from "@/types/props";
+import { forwardRef } from "react";
 import {
   Carousel,
-  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,

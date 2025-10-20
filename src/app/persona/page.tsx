@@ -90,7 +90,7 @@ const PersonasPage = () => {
           Retour
         </button>
       </Link>
-      <section className="relative flex flex-col justify-center items-left sm:max-h-[90vh] sm:w-[1200px]">
+      <section className="relative flex flex-col justify-center items-left sm:gap-5 sm:max-h-[90vh] sm:w-[1200px]">
         {personas.map((persona: IPersona) => (
           <PersonaButton
             key={persona.id}

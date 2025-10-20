@@ -1,8 +1,7 @@
-@import url('https://fonts.cdnfonts.com/css/broken-home');
+@import url("https://fonts.cdnfonts.com/css/broken-home");
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
 
 @keyframes glitch {
   0% {
@@ -35,6 +34,8 @@
   }
 }
 
+@custom-variant dark (&:is(.dark *));
+
 .glitch {
   position: relative;
   color: white;
@@ -62,7 +63,11 @@
   animation: glitch 1.5s infinite linear alternate-reverse;
 }
 
-@font-face{
+.clip-dynamic {
+  clip-path: polygon(0 0, 100% 20%, 100% 90%, 0% 70%);
+}
+
+@font-face {
   font-family: "DrunkenHour";
   src: url("/fonts/drunkenhourDEMO.otf") format("opentype");
 }

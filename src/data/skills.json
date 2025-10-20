@@ -3,6 +3,7 @@
   { "id": "java", "name": "Java", "categoryId": "langages" },
   { "id": "kotlin", "name": "Kotlin", "categoryId": "langages" },
   { "id": "php", "name": "PHP", "categoryId": "langages" },
+  { "id": "html-css", "name": "HTML/CSS", "categoryId": "langages" },
 
   { "id": "react", "name": "React", "categoryId": "frameworks" },
   { "id": "nestjs", "name": "NestJS", "categoryId": "frameworks" },
@@ -14,7 +15,6 @@
   { "id": "nextjs", "name": "Next.js", "categoryId": "frameworks" },
   { "id": "rxjs", "name": "RxJS", "categoryId": "frameworks" },
 
-  { "id": "html-css", "name": "HTML/CSS", "categoryId": "frontend" },
   {
     "id": "responsive-design",
     "name": "Responsive Design",
@@ -45,6 +45,8 @@
   },
 
   { "id": "junit", "name": "JUnit", "categoryId": "tests" },
+  { "id": "jest", "name": "Jest", "categoryId": "tests" },
+  { "id": "cypress", "name": "Cypress", "categoryId": "tests" },
 
   { "id": "docker", "name": "Docker", "categoryId": "outils" },
   { "id": "github", "name": "GitHub", "categoryId": "outils" },

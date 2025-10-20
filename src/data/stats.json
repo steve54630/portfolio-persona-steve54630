@@ -24,9 +24,9 @@
     "exp": 55
   },
   {
-    "name": "Charm",
-    "value": 2,
-    "description": "Communication technique encore en développement. Se débrouille quand il faut présenter mais considère cela comme un point faible à améliorer. Préfère l'action aux discours. Potentiel de progression important dans la présentation de projets et le networking professionnel.",
-    "exp": 25
-  }
+  "name": "Charm",
+  "value": 3,
+  "description": "Communication technique en progression. À l’aise lorsqu’il s’agit d’expliquer concrètement un projet et toujours attentif à s’améliorer dans la présentation et la mise en valeur de ses travaux. Préfère l’action aux longs discours, tout en développant de plus en plus ses compétences en communication et en partage d’expérience.",
+  "exp": 45
+}
 ]

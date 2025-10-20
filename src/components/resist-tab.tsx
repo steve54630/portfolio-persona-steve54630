@@ -17,7 +17,7 @@ const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
     });
 
     return (
-      <div className="flex flex-col gap-5 items-center justify-center">
+      <div className="flex flex-col gap-5 items-center justify-center bg-red-400/20 p-3 ml-5">
         <section
           className="grid grid-cols-10 gap-5 py-5 ml-10 -rotate-3 divide-gray-400 ext-center place-items-center w-fit sm:w-fit"
           ref={ref}
@@ -31,7 +31,7 @@ const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
             setOpen(!open);
           }}
           id="toggle-info"
-          className="ml-10 text-5xl sm:text-5xl font-drunkenhour"
+          className="ml-10 text-5xl sm:text-5xl text-gray-400 font-drunkenhour"
         >
           Légende
         </button>

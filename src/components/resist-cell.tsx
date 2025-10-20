@@ -9,13 +9,13 @@ const ResistanceCell = ({ element, type }: ResistTabItem) => {
           <img
             src={`/images/elements/${element}.png`}
             alt={element}
-            className="w-100"
+            className="sm:w-24 w-20"
           />
           <hr className="border-gray-400" />
           <img
             src={`/images/resists/${type}.png`}
             alt={type}
-            className="w-100"
+            className="sm:w-24 w-20"
           />
         </div>
       );

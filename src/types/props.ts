@@ -5,8 +5,10 @@ export interface MenuButtonProps
   extends React.HTMLAttributes<HTMLButtonElement> {
   title: string;
   explanation: string;
-  url: string;
+  url?: string;
   color: string;
+  type : "button" | "link"
+  onClickEffect?: () => void
 }
 
 export interface PersonaProps extends React.HTMLAttributes<HTMLDivElement> {

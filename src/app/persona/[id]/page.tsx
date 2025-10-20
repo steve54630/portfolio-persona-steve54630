@@ -1,4 +1,4 @@
-import PersonaPageClient from "@/components/persona-client";
+import PersonaPageClient from "@/components/client/persona-client";
 import { useApi } from "@/hooks/api";
 import { IPersona } from "@/types/persona";
 

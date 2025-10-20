@@ -31,7 +31,7 @@ export default function PersonaHeader({ persona, ...props }: PersonaProps) {
             />
             {persona.arcana.name.toLocaleUpperCase()}
           </p>
-          <p className="mt-10 text-[30px] inline-flex items-center">
+          <p className="mt-10 text-[30px] inline-flex font-broken-home items-center">
             {persona.title}
           </p>
         </div>
