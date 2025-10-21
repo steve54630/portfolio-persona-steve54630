@@ -25,7 +25,7 @@ export default function useMouseActivity() {
       window.removeEventListener("mousemove", mouseMoveListener);
       window.removeEventListener("keydown", keyDownListener);
     };
-  }, []);
+  }, [mouseActivity]);
 
   return showHelp;
 }

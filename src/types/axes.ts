@@ -1,4 +1,3 @@
-import { off } from "process";
 import { IStats } from "./stats";
 
 export type Axes = {
