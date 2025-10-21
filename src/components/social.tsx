@@ -6,6 +6,7 @@ import { IStatus } from "@/types/status";
 import { useState, useEffect } from "react";
 import { Progress } from "./ui/progress";
 import { ImCross } from "react-icons/im";
+import useMouseActivity from "@/hooks/useMouse";
 
 function SocialDiagram({
   status,
@@ -20,6 +21,7 @@ function SocialDiagram({
   const [axes, setAxes] = useState<Axes[]>([]);
   const size = 700;
   const [statViewed, setStatViewed] = useState<IStats | null>(status.stats[0]);
+  const showHelp = useMouseActivity();
 
   useEffect(() => {
     const stats: IStats[] = status.stats;
@@ -72,14 +74,16 @@ function SocialDiagram({
               (currentIndex - 1 + allButtons.length) % allButtons.length
             ];
           button.focus();
+          button.click();
           break;
         case "ArrowDown":
-          allButtons[(currentIndex + 1) % allButtons.length].focus();
+          const button2 =
+          allButtons[(currentIndex + 1) % allButtons.length]
+          button2.focus();
+          button2.click();
           break;
         case "Escape":
           setOpen(false);
-        case "Enter":
-          (document.activeElement as HTMLButtonElement)?.click();
           break;
       }
     };
@@ -127,10 +131,9 @@ function SocialDiagram({
           </g>
         ))}
       </svg>
-      <div className="absolute font-serif top-0 left-0 bg-black text-white px-3 py-2 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
-        Echap pour revenir en arrière, Utilisez les ↑ ↓ pour naviguer et Entree
-        pour choisir
-      </div>
+      {showHelp && <div className="absolute font-serif top-0 left-0 bg-black text-white px-3 py-2 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
+        Echap pour revenir en arrière, Utilisez les ↑ ↓ pour naviguer
+      </div>}
       <section className="flex flex-col bg-white sm:ml-50 sm:w-100">
         <h5 className="font-drunkenhour sm:text-5xl text-3xl p-5 text-black w-fit">
           {statViewed?.name}{" "}

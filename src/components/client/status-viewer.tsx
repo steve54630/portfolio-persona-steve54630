@@ -57,7 +57,6 @@ function StatusViewer({ stats }: { stats: IStatus }) {
           break;
         case "Escape":
           e.preventDefault();
-          document.getElementById("back-button")?.focus();
           document.getElementById("back-button")?.click();
           break;
         case "Enter":
