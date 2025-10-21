@@ -5,8 +5,7 @@
     "description": "Projet vitrine pour présenter mes compétences et réalisations, développé en React et Next.js avec un design interactif, responsive et accessible.",
     "img": [
       "/images/personas/portfolio/1.png",
-      "/images/personas/portfolio/2.png",
-      "/images/personas/portfolio/3.png"
+      "/images/personas/portfolio/2.png"
     ],
     "arcana": "typescript",
     "skills": [

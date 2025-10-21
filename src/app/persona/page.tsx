@@ -57,8 +57,7 @@ const PersonasPage = () => {
           break;
         case "Escape":
           e.preventDefault();
-          document.getElementById("back-button")?.focus();
-          router.push("/menu");
+          document.getElementById("back-button")?.click();
           break;
         case "Enter":
           e.preventDefault();
