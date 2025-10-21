@@ -84,12 +84,12 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
       <Link className="sm:absolute mb-5 sm:mb-0 top-5 left-5" href="/menu">
         <button
           id="return-button"
-          className="px-8 py-4 font-drunkenhour text-5xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
+          className="px-8 py-4 font-drunkenhour text-3xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
         >
           Retour
         </button>
       </Link>
-      <div className="relative w-full sm:w-11/12 lg:w-5/6 h-[800px] rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center justify-center p-6">
+      <div className="relative w-full sm:w-10/12 lg:w-4/6 h-[800px] rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center justify-center p-6">
         <AnimatePresence custom={direction} mode="wait">
           <motion.div
             key={current.id}
