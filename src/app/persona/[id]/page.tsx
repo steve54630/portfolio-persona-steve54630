@@ -1,6 +1,7 @@
 import PersonaPageClient from "@/components/client/persona-client";
 import { useApi } from "@/hooks/api";
 import { IPersona } from "@/types/persona";
+import axios from "axios";
 
 export default async function PersonaPage({
   params,
@@ -8,9 +9,9 @@ export default async function PersonaPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const api = useApi();
-
-  const response = await api.get(`/api/persona/${id}`);
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/persona/${id}`
+  );
   const persona: IPersona = response.data;
 
   return <PersonaPageClient persona={persona} />;

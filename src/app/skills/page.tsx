@@ -1,12 +1,15 @@
 import SkillsClient from "@/components/client/skills-client";
-import { useApi } from "@/hooks/api";
+import axios from "axios";
 import React from "react";
 
 export async function SkillPage() {
-  const api = useApi();
-  const skills = (await api.get("/api/skills")).data;
+  const skills = (
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/skills`)
+  ).data;
 
-  const categories = (await api.get("/api/categories")).data;
+  const categories = (
+    await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`)
+  ).data;
 
   return <SkillsClient skills={skills} categories={categories} />;
 }

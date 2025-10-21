@@ -1,3 +1,4 @@
+import { IPersona } from "@/types/persona";
 import { personaService } from "../..";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,7 +10,7 @@ export async function GET(
   const { id } = await params;
 
   try {
-    const persona = personaService.findPersonaById(id);
+    const persona : IPersona = personaService.findPersonaById(id);
 
     return NextResponse.json(persona);
   } catch (error: any) {
