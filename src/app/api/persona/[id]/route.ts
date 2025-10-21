@@ -13,7 +13,13 @@ export async function GET(
     const persona : IPersona = personaService.findPersonaById(id);
 
     return NextResponse.json(persona);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 404 });
+  } catch (error) {
+    let message = "Persona non trouvée";
+
+    if (error instanceof Error) {
+      message = error.message;
+    }
+
+    return NextResponse.json({ error: message }, { status: 404 });
   }
 }

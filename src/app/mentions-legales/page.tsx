@@ -34,7 +34,7 @@ export default function MentionsLegalesPage() {
       </h1>
       <p className="mb-4 text-white text-4xl font-sans">
         Ce site est édité par Steve Retournay. Vous pouvez me contacter à
-        l'adresse email :{" "}
+        l&apos;adresse email :{" "}
         <a href="mailto:retournay.steve@yahoo.com">retournay.steve@yahoo.com</a>
         .
       </p>

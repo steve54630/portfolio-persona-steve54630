@@ -75,7 +75,7 @@ export default function PortfolioPage() {
       {showHelp && (
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
           Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner, Escape pour
-          retourner à la page d'accueil
+          retourner à la page d&apos;accueil
         </div>
       )}
       <Link href="/">

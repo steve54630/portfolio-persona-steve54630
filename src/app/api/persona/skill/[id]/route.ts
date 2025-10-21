@@ -9,7 +9,13 @@ export async function GET(
     const personas = personaService.filterPersonasBySkill(params.id);
 
     return NextResponse.json(personas);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 404 });
+  } catch (error) {
+    let message = "Personas non trouvées";
+
+    if (error instanceof Error) {
+      message = error.message;
+    }
+
+    return NextResponse.json({ error: message }, { status: 404 });
   }
 }
