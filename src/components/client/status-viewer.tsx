@@ -15,6 +15,9 @@ function StatusViewer({ stats }: { stats: IStatus }) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [statOpen, setStatOpen] = useState<boolean>(false);
   const showHelp = useMouseActivity();
+  const birthdate = new Date(stats.level);
+  const today = new Date();
+  const age = Math.floor((today.getTime() - birthdate.getTime()) / 31557600000);
 
   useEffect(() => {
     const handleResize = () => {
@@ -99,7 +102,7 @@ function StatusViewer({ stats }: { stats: IStatus }) {
           <h1 className="font-serif clip-path text-3xl text-black p-7">
             <HoverCard>
               <HoverCardTrigger>
-                Lv. <span className="font-broken-home">{stats.level} </span>
+                Lv. <span className="font-broken-home">{age} </span>
               </HoverCardTrigger>
               <HoverCardContent>
                 <p className="font-sans text-xl text-center bg-white/50">
