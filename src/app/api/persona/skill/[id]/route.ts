@@ -3,10 +3,10 @@ import { personaService } from "../../..";
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const personas = personaService.filterPersonasBySkill(params.id);
+    const personas = personaService.filterPersonasBySkill((await params).id);
 
     return NextResponse.json(personas);
   } catch (error) {
