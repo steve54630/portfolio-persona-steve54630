@@ -2,6 +2,8 @@ import SkillsClient from "@/components/client/skills-client";
 import axios from "axios";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function SkillPage() {
   const url =
     process.env.NEXT_PUBLIC_API_URL || `https://${process.env.VERCEL_URL}`;
