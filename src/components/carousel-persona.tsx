@@ -10,7 +10,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import Image from "next/image";
+
 
 const CarouselPersona = forwardRef<HTMLDivElement, CarouselProps>(
   ({ persona, setApi }: CarouselProps, ref) => {
@@ -22,15 +22,15 @@ const CarouselPersona = forwardRef<HTMLDivElement, CarouselProps>(
           plugins={[Autoplay({ delay: 5000 })]}
         >
           <CarouselContent className="h-fit sm:h-screen">
-            {persona.image.map((image, index) => (
+            {persona.img.map((img, index) => (
               <CarouselItem
                 key={index}
                 className="h-full flex items-center justify-center"
               >
-                <Image
-                  src={image}
+                <img
+                  src={img}
                   className="h-full object-contain"
-                  alt={`Image de ${persona.title} ${index + 1}`}
+                  alt={`img de ${persona.title} ${index + 1}`}
                 />
               </CarouselItem>
             ))}

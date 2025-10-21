@@ -5,7 +5,7 @@ export type IPersona = {
   id: string;
   title: string;
   description: string;
-  image: string[];
+  img: string[];
   arcana: IArcana;
   skills: ISkill[];
   resistances: string[];

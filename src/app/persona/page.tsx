@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+
 
 const PersonasPage = () => {
   const [selectedPersona, setSelectedPersona] = useState<IPersona | null>(null);
@@ -112,8 +112,8 @@ const PersonasPage = () => {
           <section className="relative lg:flex justify-center items-center pr-20 hidden sm:h-[90vh] sm:w-[800px]">
             {selectedPersona ? (
               <>
-                <Image
-                  src={`${selectedPersona?.image[0]}`}
+                <img
+                  src={`${selectedPersona?.img[0]}`}
                   className="h-5/6 object-contain"
                   alt={`Photo du projet ${selectedPersona?.title}`}
                 />
@@ -124,7 +124,7 @@ const PersonasPage = () => {
                 <p className="text-2xl font-bold">Sélectionnez un projet</p>
                 <p className="mt-4 text-lg">
                   Passez la souris sur un projet ou utilisez les flèches pour
-                  naviguer entre les projets et voir son image.
+                  naviguer entre les projets et voir son img.
                 </p>
               </div>
             )}

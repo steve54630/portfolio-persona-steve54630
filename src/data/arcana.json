@@ -1,5 +1,5 @@
 [
-  { "id": "typescript", "name": "TypeScript", "phrase" : "Typus scriptura est virtus", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { "id": "java", "name": "Java", "phrase" : "Java potentia programmatorum", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-  { "id": "kotlin", "name": "Kotlin", "phrase" : "Kotlin novus ordo codicis", "image": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" }
+  { "id": "typescript", "name": "TypeScript", "phrase" : "Typus scriptura est virtus", "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { "id": "java", "name": "Java", "phrase" : "Java potentia programmatorum", "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { "id": "kotlin", "name": "Kotlin", "phrase" : "Kotlin novus ordo codicis", "img": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" }
 ]

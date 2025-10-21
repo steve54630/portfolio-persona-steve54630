@@ -8,7 +8,7 @@ async function StatusPage() {
   const url = process.env.NEXT_PUBLIC_API_URL || `https://${process.env.VERCEL_URL}`
   const response = await axios.get(
 
-    `${url}/api/stats`
+    `${url}/api/status`
   );
   const stats = response.data;
 
