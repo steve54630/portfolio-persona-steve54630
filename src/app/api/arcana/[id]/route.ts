@@ -4,10 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   _: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const arcana : IArcana = arcanaService.getArcanaById(params.id);
+    const arcana: IArcana = arcanaService.getArcanaById((await params).id);
 
     return NextResponse.json(arcana);
   } catch (error) {
