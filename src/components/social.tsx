@@ -87,7 +87,7 @@ function SocialDiagram({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [setOpen]);
 
   return (
     <div className="fixed inset-0 backdrop-blur-md bg-black/40 min-h-screen overflow-y-hidden max-w-screen flex flex-col sm:flex-row items-center justify-center z-50">

@@ -9,6 +9,7 @@ import Link from "next/link";
 import SocialDiagram from "../social";
 import MenuButton from "../menu-button";
 import useMouseActivity from "@/hooks/useMouse";
+import Image from "next/image";
 
 function StatusViewer({ stats }: { stats: IStatus }) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -81,7 +82,7 @@ function StatusViewer({ stats }: { stats: IStatus }) {
           Retour
         </button>
       </Link>
-      <img
+      <Image
         src="/images/avatar.png"
         className="mb-5 sm:mb-0 p-5 sm:p-0 sm:w-2/5"
         alt="Retournay Steve"

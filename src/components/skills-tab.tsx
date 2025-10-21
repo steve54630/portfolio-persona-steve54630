@@ -26,4 +26,5 @@ const SkillsTab = forwardRef<HTMLDivElement, PersonaProps>(
   }
 );
 
+SkillsTab.displayName = "SkillsTab";
 export default SkillsTab;

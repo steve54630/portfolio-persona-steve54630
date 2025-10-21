@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const PersonasPage = () => {
   const [selectedPersona, setSelectedPersona] = useState<IPersona | null>(null);
@@ -111,7 +112,7 @@ const PersonasPage = () => {
           <section className="relative lg:flex justify-center items-center pr-20 hidden sm:h-[90vh] sm:w-[800px]">
             {selectedPersona ? (
               <>
-                <img
+                <Image
                   src={`${selectedPersona?.image[0]}`}
                   className="h-5/6 object-contain"
                   alt={`Photo du projet ${selectedPersona?.title}`}

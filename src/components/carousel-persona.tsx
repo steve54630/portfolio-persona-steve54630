@@ -10,6 +10,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Image from "next/image";
 
 const CarouselPersona = forwardRef<HTMLDivElement, CarouselProps>(
   ({ persona, setApi }: CarouselProps, ref) => {
@@ -26,7 +27,7 @@ const CarouselPersona = forwardRef<HTMLDivElement, CarouselProps>(
                 key={index}
                 className="h-full flex items-center justify-center"
               >
-                <img
+                <Image
                   src={image}
                   className="h-full object-contain"
                   alt={`Image de ${persona.title} ${index + 1}`}

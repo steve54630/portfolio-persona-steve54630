@@ -2,6 +2,7 @@
 
 import useMouseActivity from "@/hooks/useMouse";
 import { PersonaProps } from "@/types/props";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -30,7 +31,7 @@ export default function PersonaHeader({ persona, ...props }: PersonaProps) {
       <section className="w-fit h-fit">
         <div className="flex flex-col sm:flex-row  gap-2">
           <p className="font-extrabold text-2xl text-yellow-700 italic inline-flex items-center">
-            <img
+            <Image
               src={persona.arcana.image}
               alt={persona.title}
               className="sm:w-[20%] w-[20%] px-5 h-fit"

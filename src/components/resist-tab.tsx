@@ -4,6 +4,7 @@ import { resistances } from "@/data/resistances";
 import {  ResistsProps } from "@/types/props";
 import { forwardRef } from "react";
 import ResistanceCell, { ResistTabItem } from "./resist-cell";
+import Image from "next/image";
 
 const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
   ({ persona, open, setOpen }: ResistsProps, ref) => {
@@ -41,7 +42,7 @@ const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
               <div className="grid grid-cols-2 gap-6 w-full place-items-center">
                 {resistances.map((element) => (
                   <div key={element} className="flex flex-col items-center">
-                    <img
+                    <Image
                       src={`/images/elements/${element}.png`}
                       alt={element}
                       className="w-10"
@@ -50,7 +51,7 @@ const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
                   </div>
                 ))}
                 <div className="flex flex-col items-center">
-                  <img
+                  <Image
                     src={`/images/resists/neutral.png`}
                     alt="neutral"
                     className="w-10"
@@ -58,7 +59,7 @@ const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
                   <p className="text-2xl capitalize">Neutre</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <img
+                  <Image
                     src={`/images/resists/weak.png`}
                     alt="weak"
                     className="w-10"
@@ -66,7 +67,7 @@ const ResistTab = forwardRef<HTMLDivElement, ResistsProps>(
                   <p className="text-2xl capitalize">Faible</p>
                 </div>
                 <div className="flex flex-col items-center">
-                  <img
+                  <Image
                     src={`/images/resists/resist.png`}
                     alt="resist"
                     className="w-10"
