@@ -3,6 +3,7 @@
 import AnimatedPhrase from "@/components/arcana-phrase";
 import PersonaButton from "@/components/persona-button";
 import { useApi } from "@/hooks/api";
+import useMouseActivity from "@/hooks/useMouse";
 import { IPersona } from "@/types/persona";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -15,6 +16,7 @@ const PersonasPage = () => {
   const [personas, setPersonas] = useState([]);
   const router = useRouter();
   const [isMobile, setIsMobile] = useState(false);
+  const showHelp = useMouseActivity();
 
   useEffect(() => {
     if (window.innerWidth > 768) {
@@ -32,7 +34,9 @@ const PersonasPage = () => {
         e.preventDefault();
       }
 
-      const allButtons = Array.from(document.querySelectorAll("button"));
+      const allButtons = Array.from(
+        document.querySelectorAll("button[datatype=persona-button]")
+      ) as HTMLButtonElement[];
       const currentIndex = allButtons.indexOf(
         document.activeElement as HTMLButtonElement
       );
@@ -124,10 +128,12 @@ const PersonasPage = () => {
               </div>
             )}
           </section>
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
-            Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner et Echap
-            pour revenir au menu
-          </div>
+          {showHelp && (
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
+              Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner et Echap
+              pour revenir au menu
+            </div>
+          )}
         </>
       )}
     </motion.main>

@@ -7,14 +7,13 @@ import { HoverCard, HoverCardTrigger } from "@radix-ui/react-hover-card";
 import { HoverCardContent } from "../ui/hover-card";
 import Link from "next/link";
 import SocialDiagram from "../social";
-import { IStats } from "@/types/stats";
-import { s } from "framer-motion/client";
-import { Ponnala } from "next/font/google";
 import MenuButton from "../menu-button";
+import useMouseActivity from "@/hooks/useMouse";
 
 function StatusViewer({ stats }: { stats: IStatus }) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [statOpen, setStatOpen] = useState<boolean>(false);
+  const showHelp = useMouseActivity();
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,7 +34,9 @@ function StatusViewer({ stats }: { stats: IStatus }) {
         e.preventDefault();
       }
 
-      const allButtons = Array.from(document.querySelectorAll("button"));
+      const allButtons = Array.from(
+        document.querySelectorAll("button[datatype=menu-button]")
+      ) as HTMLButtonElement[];
       const currentIndex = allButtons.indexOf(
         document.activeElement as HTMLButtonElement
       );
@@ -86,10 +87,10 @@ function StatusViewer({ stats }: { stats: IStatus }) {
         alt="Retournay Steve"
       />
       <section className="p-3 flex flex-col items-center sm:justify-center sm:gap-18"></section>
-      <div className="absolute bottom-5 right-5 bg-black text-white px-3 py-2 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
+      {showHelp && <div className="absolute bottom-5 right-5 bg-black text-white px-3 py-2 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
         Echap pour revenir en arrière, Utilisez les ↑ ↓ pour naviguer et Entree
         pour choisir
-      </div>
+      </div>}
       <section className="flex flex-col justify-center items-center w-fit sm:mt-10">
         <header className="flex flex-col justify-center items-center sm:text-4xl w-3/4 bg-white/60 text-3xl ml-10 p-10 clip-dynamic">
           <h1 className="font-broken-home text-black text-4xl ">

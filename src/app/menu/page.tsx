@@ -5,8 +5,11 @@ import { motion } from "framer-motion";
 import { buttons } from "@/data/menu";
 import { useEffect } from "react";
 import Link from "next/link";
+import useMouseActivity from "@/hooks/useMouse";
 
 export default function PortfolioPage() {
+  const showHelp = useMouseActivity();
+
   useEffect(() => {
     if (window.innerWidth > 768) {
       const allButtons = Array.from(document.querySelectorAll("button"));
@@ -22,7 +25,9 @@ export default function PortfolioPage() {
         e.preventDefault();
       }
 
-      const allButtons = Array.from(document.querySelectorAll("button"));
+      const allButtons = Array.from(
+        document.querySelectorAll("button[datatype=menu-button]")
+      ) as HTMLButtonElement[];
       const currentIndex = allButtons.indexOf(
         document.activeElement as HTMLButtonElement
       );
@@ -67,14 +72,16 @@ export default function PortfolioPage() {
       className="flex flex-col bg-[url('/images/menu-background.jpg')] bg-cover bg-center items-center justify-center h-screen"
       aria-label="Menu principal navigable avec les fleches du clavier "
     >
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
-        Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner, Escape pour
-        retourner à la page d'accueil
-      </div>
+      {showHelp && (
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
+          Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner, Escape pour
+          retourner à la page d'accueil
+        </div>
+      )}
       <Link href="/">
         <button
           id="back-button"
-          className="absolute top-4 right-4 px-8 py-4 font-drunkenhour text-3xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
+          className="absolute top-4 left-4 px-8 py-4 font-drunkenhour text-3xl text-white bg-black/70 rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
         >
           Retour
         </button>

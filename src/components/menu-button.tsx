@@ -10,6 +10,7 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
         {...rest}
         ref={ref}
         onClick={onClickEffect}
+        datatype="menu-button"
       >
         {title}
         <span className="absolute font-serif bottom-0 right-0 mb-1 mr-1 text-xl text-gray-100 bg-black bg-opacity-70 px-5 py-3 rounded opacity-0 group-focus:opacity-100 group-hover:opacity-100 transition-opacity pointer-events-none">

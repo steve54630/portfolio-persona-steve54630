@@ -1,8 +1,12 @@
+"use client";
+
+import useMouseActivity from "@/hooks/useMouse";
 import { PersonaProps } from "@/types/props";
 import Link from "next/link";
 import React from "react";
 
 export default function PersonaHeader({ persona, ...props }: PersonaProps) {
+  const showHelp = useMouseActivity();
   return (
     <header
       className="flex flex-col justify-between max-w-screen sm:text-4xl -rotate-2 sm:m-0 mb-6 items-center py-5 px-5 gap-3 text-white"
@@ -15,10 +19,12 @@ export default function PersonaHeader({ persona, ...props }: PersonaProps) {
         >
           Retour
         </button>
-        <div className="bg-black text-white text-sm px-3 py-1 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
-          Utilisez les ← et → pour changer les images, Echap pour revenir en
-          arrière, Espace pour toggle la légende
-        </div>
+        {showHelp && (
+          <div className="bg-black text-white text-sm px-3 py-1 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
+            Utilisez les ← et → pour changer les images, Echap pour revenir en
+            arrière, Espace pour toggle la légende
+          </div>
+        )}
       </Link>
 
       <section className="w-fit h-fit">

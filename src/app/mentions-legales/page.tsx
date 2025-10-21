@@ -1,6 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function MentionsLegalesPage() {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (window.innerWidth < 768) return;
+
+      if (e.key === "Escape") {
+        e.preventDefault();
+        document.getElementById("back-button")?.focus();
+        document.getElementById("back-button")?.click();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <div className="py-60 px-4 max-w-3xl mx-auto">
       <Link href="/menu">
@@ -11,18 +29,21 @@ export default function MentionsLegalesPage() {
           Retour
         </button>
       </Link>
-      <h1 className="text-6xl font-bold mb-4 text-white">Mentions légales</h1>
-      <p className="mb-4 text-white">
+      <h1 className="text-6xl font-bold mb-4 text-white font-drunkenhour">
+        Mentions légales
+      </h1>
+      <p className="mb-4 text-white text-4xl font-sans">
         Ce site est édité par Steve Retournay. Vous pouvez me contacter à
         l'adresse email :{" "}
-        <a href="mailto:retournay.steve@yahoo.com">retournay.steve@yahoo.com</a>.
+        <a href="mailto:retournay.steve@yahoo.com">retournay.steve@yahoo.com</a>
+        .
       </p>
-      <p className="mb-4 text-white">
+      <p className="mb-4 text-white text-4xl">
         Toute reproduction totale ou partielle du contenu est interdite sauf
         autorisation. Les informations publiées sont fournies à titre indicatif
         et peuvent évoluer.
       </p>
-      <p className="text-sm text-gray-500">
+      <p className="text-gray-500 text-2xl">
         Dernière mise à jour : 30 septembre 2025
       </p>
     </div>

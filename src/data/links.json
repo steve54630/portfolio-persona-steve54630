@@ -2,7 +2,8 @@
   {
     "id": "email",
     "platform": "Email",
-    "url": "mailto:retournay.steve@yahoo.com"
+    "url": "mailto:retournay.steve@yahoo.com",
+    "icon": "/images/icons/email.png"
   },
   {
     "id": "linkedin",

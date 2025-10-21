@@ -35,7 +35,7 @@ export default function HomePage() {
             ref={buttonRef}
             className="px-8 py-4 font-drunkenhour text-3xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none hover:bg-red-600"
           >
-            Appuyez sur Entrée pour entrer...
+            Appuyez sur Entrée pour visiter...
           </button>
         </Link>
 
