@@ -7,9 +7,10 @@ import SkillsTab from "@/components/skills-tab";
 import { PersonaProps } from "@/types/props";
 import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
+import { CarouselApi } from "../ui/carousel";
 
 export default function PersonaPageClient({ persona }: PersonaProps) {
-  const [api, setApi] = React.useState<any>();
+  const [api, setApi] = React.useState<CarouselApi>();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {

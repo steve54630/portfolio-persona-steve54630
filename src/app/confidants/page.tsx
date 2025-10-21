@@ -1,10 +1,9 @@
 import ConfidantClient from "@/components/client/confidants-client";
-import { useApi } from "@/hooks/api";
+import axios from "axios";
 
 async function ConfidantsPage() {
-  const api = useApi();
 
-  const response = await api.get("/api/links");
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/confidants`);
   const confidants = response.data;
 
   return <ConfidantClient confidants={confidants} />;
