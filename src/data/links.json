@@ -1,0 +1,26 @@
+[
+  {
+    "id": "email",
+    "platform": "Email",
+    "url": "mailto:retournay.steve@yahoo.com",
+    "icon": "/images/icons/email.png"
+  },
+  {
+    "id": "linkedin",
+    "platform": "LinkedIn",
+    "url": "https://www.linkedin.com/in/steve-retournay/",
+    "icon": "/images/icons/linkedin.png"
+  },
+  {
+    "id": "gitlab",
+    "platform": "GitLab",
+    "url": "https://gitlab.com/steve5488",
+    "icon": "/images/icons/gitlab.png"
+  },
+  {
+    "id": "github",
+    "platform": "GitHub",
+    "url": "https://github.com/steve54630",
+    "icon": "/images/icons/github.png"
+  }
+]

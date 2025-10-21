@@ -1,0 +1,43 @@
+@layer utilities {
+  @keyframes wave {
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(var(--y, -10px)) rotate(var(--r, -2deg));
+    }
+  }
+
+  .animate-wave {
+    display: inline-block;
+    animation: wave 1.5s ease-in-out infinite;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE et Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  .scrollbar:hover {
+    -ms-overflow-style: auto; /* IE et Edge */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #8dc5fa #2f5ee2;
+  }
+
+  .scrollbar:hover::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background: #2f5ee2;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 20px;
+    border: 2px solid #000000;
+  }
+}
