@@ -109,7 +109,6 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
                 alt={current.platform}
                 className="w-24 mb-2 rounded-lg"
               />
-
               {current.platform}
             </h2>
 

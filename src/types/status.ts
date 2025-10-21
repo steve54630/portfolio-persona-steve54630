@@ -1,7 +1,7 @@
 import { IStats } from "./stats";
 
 export type IStatus = {
-    level: number;
+    level: string;
     hp: number;
     maxHp: number;
     sp: number;
