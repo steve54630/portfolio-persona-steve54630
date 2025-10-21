@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ILink } from "@/types/link";
 import Link from "next/link";
 import useMouseActivity from "@/hooks/useMouse";
-import Image from "next/image";
+
 
 interface ConfidantBookProps {
   confidants: ILink[];
@@ -102,7 +102,9 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             className="absolute inset-0 flex flex-col items-center justify-center"
           >
             <h2 className="absolute top-5 left-5 text-4xl flex flex-row gap-5 items-center justify-center font-drunkenhour mb-6 text-white bg-black/70">
-              <Image
+              <img
+                width={"50"}
+                height={"50"}
                 src={current.icon}
                 alt={current.platform}
                 className="w-24 mb-2 rounded-lg"
@@ -119,7 +121,9 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
                 rel="noopener noreferrer"
                 className="flex flex-row gap-10 items-center"
               >
-                <Image
+                <img
+                  width={"50"}
+                  height={"50"}
                   src={`/images/confident/${current.id}.jpg`}
                   alt={current.platform}
                   className="w-full mb-2 rounded-lg"
@@ -147,11 +151,13 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             ← Précédent
             {isMobile && "(Fléche gauche)"}
           </button>
-          {showHelp && <p className="text-white">
-            {" "}
-            Entrée pour visiter la page <br />
-            Escape pour revenir en arriere
-          </p>}
+          {showHelp && (
+            <p className="text-white">
+              {" "}
+              Entrée pour visiter la page <br />
+              Escape pour revenir en arriere
+            </p>
+          )}
           <button
             onClick={nextPage}
             id="next-button"

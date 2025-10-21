@@ -1,6 +1,6 @@
 export type IArcana = {
     id: string;
     name: string;
-    image: string;
+    img: string;
     phrase: string
 }

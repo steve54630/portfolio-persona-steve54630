@@ -3,7 +3,7 @@
     "id": "portfolio",
     "title": "Portfolio Next.js/React",
     "description": "Projet vitrine pour présenter mes compétences et réalisations, développé en React et Next.js avec un design interactif, responsive et accessible.",
-    "image": [
+    "img": [
       "/images/personas/portfolio/1.png",
       "/images/personas/portfolio/2.png",
       "/images/personas/portfolio/3.png"
@@ -35,7 +35,7 @@
     "id": "jobflow-ms",
     "title": "JobFlow - Architecture Microservices",
     "description": "Refactor d’un back monolithique en microservices (NestJS & Spring Boot + MongoDB) dans un projet d’équipe React. Gestion Agile avec YouTrack, versionning avec GitHub.",
-    "image": [
+    "img": [
       "/images/personas/jobflow-ms/1.png",
       "/images/personas/jobflow-ms/2.png",
       "/images/personas/jobflow-ms/3.png"
@@ -69,7 +69,7 @@
     "id": "p3-angular",
     "title": "Projet Angular - Application Reactive",
     "description": "Application démonstrative Angular, réactive avec RxJS, connectée à une API distante, déployée sur Vercel avec un thème personnalisé.",
-    "image": [
+    "img": [
       "/images/personas/p3-angular/1.webp",
       "/images/personas/p3-angular/2.webp",
       "/images/personas/p3-angular/3.webp"
@@ -99,7 +99,7 @@
     "id": "javafx-pharmacie",
     "title": "Application JavaFX - Gestion de Pharmacie",
     "description": "Application monolithique de gestion de pharmacie, développée avec JavaFX et DAO, utilisant MySQL et testée avec JUnit.",
-    "image": [
+    "img": [
       "/images/personas/javafx-pharmacie/1.png",
       "/images/personas/javafx-pharmacie/2.png",
       "/images/personas/javafx-pharmacie/3.png"
@@ -129,7 +129,7 @@
     "id": "kotlin-femsante",
     "title": "Application Kotlin Android - Sante Feminine",
     "description": "Application mobile Android pour accompagner les femmes dans leur santé quotidienne, intégrant des ressources multimédias sécurisées et une API backend Laravel pour la gestion des contenus.",
-    "image": [
+    "img": [
       "/images/personas/femsante/1.jpg",
       "/images/personas/femsante/2.jpg",
       "/images/personas/femsante/3.jpg"

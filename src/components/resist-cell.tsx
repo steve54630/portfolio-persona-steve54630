@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 
 export type ResistTabItem = {
   element: string;
@@ -8,13 +8,13 @@ export type ResistTabItem = {
 const ResistanceCell = ({ element, type }: ResistTabItem) => {
       return (
         <div key={element} className="flex flex-col gap-2">
-          <Image
+          <img
             src={`/images/elements/${element}.png`}
             alt={element}
             className="sm:w-24 w-20"
           />
           <hr className="border-gray-400" />
-          <Image
+          <img
             src={`/images/resists/${type}.png`}
             alt={type}
             className="sm:w-24 w-20"
