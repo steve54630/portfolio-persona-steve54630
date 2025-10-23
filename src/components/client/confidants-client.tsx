@@ -6,7 +6,6 @@ import { ILink } from "@/types/link";
 import Link from "next/link";
 import useMouseActivity from "@/hooks/useMouse";
 
-
 interface ConfidantBookProps {
   confidants: ILink[];
 }
@@ -103,8 +102,6 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
           >
             <h2 className="absolute top-5 left-5 text-4xl flex flex-row gap-5 items-center justify-center font-drunkenhour mb-6 text-white bg-black/70">
               <img
-                width={"50"}
-                height={"50"}
                 src={current.icon}
                 alt={current.platform}
                 className="w-24 mb-2 rounded-lg"
@@ -131,8 +128,8 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             ) : current.platform === "Email" ? (
               <iframe
                 src="https://docs.google.com/forms/d/e/1FAIpQLSexc3a15n0QzX5tcmKUqn7-ylocEJnjOodRSqZez7smT79Z0g/viewform?embedded=true"
-                width="500"
-                height="600"
+                width={`${isMobile ? "50%" : "600"}`}
+                height={`${isMobile ? "50%" : "600"}`}
                 className="w-full mb-2 rounded-lg"
               >
                 Chargement…
@@ -147,8 +144,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             id="back-button"
             className="px-5 py-2 bg-black text-white rounded hover:bg-gray-800"
           >
-            ← Précédent
-            {isMobile && "(Fléche gauche)"}
+            ← Précédent {!isMobile && "(Fléche gauche)"}
           </button>
           {showHelp && (
             <p className="text-white">
@@ -162,7 +158,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             id="next-button"
             className="px-5 py-2 bg-black text-white rounded hover:bg-gray-800"
           >
-            Suivant →{isMobile && "(Fléche droite)"}
+            Suivant {!isMobile && "(Fléche droite)"} →
           </button>
         </div>
       </div>
