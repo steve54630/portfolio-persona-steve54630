@@ -29,21 +29,21 @@ export default function MentionsLegalesPage() {
           Retour
         </button>
       </Link>
-      <h1 className="text-6xl font-bold mb-4 text-white font-drunkenhour">
+      <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-white font-drunkenhour">
         Mentions légales
       </h1>
-      <p className="mb-4 text-white text-4xl font-sans">
+      <p className="mb-4 text-white text-2xl sm:text-4xl font-sans">
         Ce site est édité par Steve Retournay. Vous pouvez me contacter à
         l&apos;adresse email :{" "}
         <a href="mailto:retournay.steve@yahoo.com">retournay.steve@yahoo.com</a>
         .
       </p>
-      <p className="mb-4 text-white text-4xl">
+      <p className="mb-4 text-white text-2xl sm:text-4xl">
         Toute reproduction totale ou partielle du contenu est interdite sauf
         autorisation. Les informations publiées sont fournies à titre indicatif
         et peuvent évoluer.
       </p>
-      <p className="text-gray-500 text-2xl">
+      <p className="text-gray-500 text-2xl sm:text-4xl">
         Dernière mise à jour : 30 septembre 2025
       </p>
     </div>
