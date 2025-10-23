@@ -41,8 +41,15 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
   const current = confidants[currentIndex];
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (window.innerWidth < 768) return;
 
@@ -144,7 +151,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             id="back-button"
             className="px-5 py-2 bg-black text-white rounded hover:bg-gray-800"
           >
-            ← Précédent {!isMobile && "(Fléche gauche)"}
+            ← Précédent {!isMobile && showHelp && "(Fléche gauche)"}
           </button>
           {showHelp && (
             <p className="text-white">
@@ -158,7 +165,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
             id="next-button"
             className="px-5 py-2 bg-black text-white rounded hover:bg-gray-800"
           >
-            Suivant {!isMobile && "(Fléche droite)"} →
+            Suivant {!isMobile && showHelp && "(Fléche droite)"} →
           </button>
         </div>
       </div>
