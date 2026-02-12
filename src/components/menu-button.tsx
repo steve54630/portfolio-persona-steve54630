@@ -6,7 +6,7 @@ const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   ({ title, explanation, url, color, type, onClickEffect, ...rest }, ref) => {
     const DivButton = () => (
       <button
-        className={`relative group inline-block px-5 py-5 focus:text-white hover:text-white focus:border-2 focus:border-dashed hover:border-2 hover:border-dashed text-gray-400  border-gray-500 rounded-lg text-6xl sm:text-8xl font-drunkenhour ${color}`}
+        className={`relative group inline-block px-5 py-5 focus:text-white hover:text-white focus:border-2 focus:border-dashed hover:border-2 hover:border-dashed text-gray-400  border-gray-500 rounded-lg text-5xl md:text-6xl sm:text-7xl lg:text-8xl font-drunkenhour ${color}`}
         {...rest}
         ref={ref}
         onClick={onClickEffect}

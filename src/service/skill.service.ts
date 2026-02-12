@@ -18,6 +18,11 @@ export class SkillService {
     return this.skills;
   }
 
+  /**
+   * Trouver un skill par son id
+   * @param id ID du skill à trouver
+   * @returns skill demandé
+   */
   public findSkillById(id: string): ISkill {
     const skill = this.skills.find((skill) => skill.id === id);
     if (!skill) {
