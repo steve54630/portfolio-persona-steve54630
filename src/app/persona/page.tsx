@@ -94,7 +94,7 @@ const PersonasPage = () => {
           Retour
         </button>
       </Link>
-      <section className="relative flex flex-col justify-center items-left sm:gap-5 sm:max-h-[90vh] sm:w-[1200px]">
+      <section className="relative flex flex-col justify-center items-left sm:gap-5 sm:max-h-[90vh] sm:w-300">
         {personas.map((persona: IPersona) => (
           <PersonaButton
             key={persona.id}
@@ -108,7 +108,7 @@ const PersonasPage = () => {
       </section>
       {isMobile && (
         <>
-          <section className="relative lg:flex justify-center items-center pr-20 hidden sm:h-[90vh] sm:w-[800px]">
+          <section className="relative lg:flex justify-center items-center pr-20 hidden sm:h-[90vh] sm:w-200">
             {selectedPersona ? (
               <>
                 <img

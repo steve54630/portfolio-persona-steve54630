@@ -23,7 +23,7 @@ export const buttons: MenuButtonProps[] = [
       type: "link",
     },
     {
-      title: "Confidants",
+      title: "Contacts",
       explanation: "Comment me contacter",
       url: "/confidants",
       color: "hover:bg-blue-600 focus:bg-blue-600",
