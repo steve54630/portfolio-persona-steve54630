@@ -95,7 +95,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
           Retour
         </button>
       </Link>
-      <div className="relative w-full sm:w-10/12 lg:w-4/6 h-[800px] rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center justify-center p-6">
+      <div className="relative w-full sm:w-10/12 lg:w-4/6 h-200 rounded-2xl shadow-2xl overflow-hidden flex flex-col items-center justify-center p-6">
         <AnimatePresence custom={direction} mode="wait">
           <motion.div
             key={current.id}
