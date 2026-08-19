@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
+import LegalFooter from "@/components/legal-footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} bg-[url('/images/menu-background.jpg')] antialiased`}
       >
         {children}
+        <LegalFooter />
       </body>
     </html>
   );
