@@ -7,14 +7,14 @@ export const TUTORIAL_STORAGE_KEY = "portfolio-tutorial-vu";
 
 const entries = [
   {
-    icon: "⚔️",
-    title: "Skills",
-    text: "Les technologies que je pratique, rangées par catégories.",
-  },
-  {
     icon: "👤",
     title: "Status",
     text: "Qui je suis, mes statistiques, et mes CV en ligne et papier.",
+  },
+  {
+    icon: "⚔️",
+    text: "Les technologies que je pratique, rangées par catégories.",
+    title: "Skills",
   },
   {
     icon: "🎴",
@@ -22,14 +22,14 @@ const entries = [
     text: "Mes projets. Chacun possède un Arcane — sa technologie principale — des Résistances, ce que j'y maîtrise, et des Faiblesses, ce qu'il me reste à travailler.",
   },
   {
-    icon: "🤝",
-    title: "Contacts",
-    text: "Mes Confidants : les différentes façons de me joindre.",
-  },
-  {
     icon: "📜",
     title: "History",
     text: "Mon parcours professionnel, mission par mission.",
+  },
+  {
+    icon: "🤝",
+    title: "Confidents",
+    text: "Mes Confidants : les différentes façons de me joindre.",
   },
 ];
 

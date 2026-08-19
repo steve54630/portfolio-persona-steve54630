@@ -24,7 +24,7 @@
     "role": "Développeur FullStack",
     "company": "Incubateur Tech Alt",
     "period": "2025",
-    "description": "Conception complète d'API REST et sécurisation via JWT sous NestJS.",
+    "description": "Développement d'une plateforme d'accompagnement à la recherche d'emploi : gestion sécurisée des comptes utilisateurs via JWT, intégration de l'API France Travail pour le flux d'offres, génération automatique de CV et suivi de l'avancement des candidatures par statut.",
     "skillIds": [
       "nestjs",
       "react",
@@ -38,7 +38,7 @@
     "role": "Développeur Mobile",
     "company": "Freelance",
     "period": "Depuis 2024",
-    "description": "Développement d'une application Android/iOS native en Kotlin pour aider les femmes ayant des pathologies particulières.",
+    "description": "Conception, développement et déploiement d'une application mobile Android/iOS en Kotlin pour le suivi de pathologies féminines. Création d'une API REST sous Laravel/PHP, modélisation de la base de données MySQL et optimisation de l'expérience utilisateur mobile.",
     "skillIds": [
       "kotlin",
       "laravel",
@@ -55,9 +55,9 @@
     "role": "Développeur FullStack",
     "company": "Sogetrel",
     "period": "2023",
-    "description": "Optimisation de requêtes SQL Server et refactorisation complète d'un site de gestion de stock.",
+    "description": "Évolution d'une application WebDev de gestion de stock et optimisation des requêtes SQL Server pour outils comptables Excel : création de vues dédiées (temps de chargement divisé par 10), refonte de la gestion des accès et sécurisation du schéma de la base de données.",
     "skillIds": [
-      "sql-server"
+      "sql-server", "methods-agile"
     ]
   }
 ]
