@@ -32,11 +32,7 @@ function StatusViewer({ stats }: { stats: IStatus }) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (window.matchMedia("(pointers: coarse)").matches || statOpen) return;
-
-      if (e.key in ["ArrowUp", "ArrowDown", "Enter"]) {
-        e.preventDefault();
-      }
+      if (window.matchMedia("(pointer: coarse)").matches || statOpen) return;
 
       const allButtons = Array.from(
         document.querySelectorAll("button[datatype=menu-button]")

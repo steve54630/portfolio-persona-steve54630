@@ -19,21 +19,18 @@ const PersonasPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const showHelp = useMouseActivity();
 
+  /* depend de personas : les boutons n'existent qu'une fois le fetch termine */
   useEffect(() => {
-    if (window.innerWidth > 768) {
-      const allButtons = Array.from(document.querySelectorAll("button"));
-      setIsMobile(true);
-      allButtons[0].focus();
-    }
-  }, []);
+    if (window.innerWidth <= 768) return;
+    setIsMobile(true);
+    document
+      .querySelector<HTMLButtonElement>("button[datatype=persona-button]")
+      ?.focus();
+  }, [personas]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (window.matchMedia("(pointers: coarse)").matches) return;
-
-      if (e.key in ["ArrowUp", "ArrowDown", "Enter"]) {
-        e.preventDefault();
-      }
+      if (window.matchMedia("(pointer: coarse)").matches) return;
 
       const allButtons = Array.from(
         document.querySelectorAll("button[datatype=persona-button]")

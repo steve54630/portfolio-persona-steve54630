@@ -53,10 +53,6 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (window.innerWidth < 768) return;
 
-      if (e.key in ["ArrowLeft", "ArrowRight", "Enter"]) {
-        e.preventDefault();
-      }
-
       switch (e.key) {
         case "ArrowLeft":
           e.preventDefault();
