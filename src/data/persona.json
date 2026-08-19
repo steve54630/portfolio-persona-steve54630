@@ -16,7 +16,9 @@
       "github",
       "vercel",
       "ui-ux",
-      "application-monolithique"
+      "application-monolithique",
+      "responsive-design",
+      "accessibility"
     ],
     "resistances": [
       "performance",
@@ -26,8 +28,12 @@
       "accessibility",
       "error-handling"
     ],
-    "weaknesses": ["testing"],
-    "neutral": ["security"],
+    "weaknesses": [
+      "testing"
+    ],
+    "neutral": [
+      "security"
+    ],
     "link": "https://github.com/steve54630/persona-portfolio"
   },
   {
@@ -44,11 +50,18 @@
       "typescript",
       "react",
       "nestjs",
+      "spring",
       "cypress",
       "microservices",
       "jest",
       "github",
-      "docker"
+      "docker",
+      "mongo",
+      "methods-agile",
+      "youtrack",
+      "responsive-design",
+      "accessibility",
+      "nats"
     ],
     "resistances": [
       "testing",
@@ -82,7 +95,8 @@
       "html-css",
       "github",
       "vercel",
-      "event-driven"
+      "event-driven",
+      "responsive-design"
     ],
     "resistances": [
       "performance",
@@ -90,8 +104,14 @@
       "clean-architecture",
       "responsive-design"
     ],
-    "weaknesses": ["testing", "accessibility"],
-    "neutral": ["security", "error-handling"],
+    "weaknesses": [
+      "testing",
+      "accessibility"
+    ],
+    "neutral": [
+      "security",
+      "error-handling"
+    ],
     "link": "https://github.com/steve54630/p3-angular"
   },
   {
@@ -120,8 +140,14 @@
       "clean-architecture",
       "error-handling"
     ],
-    "weaknesses": ["devops", "responsive-design", "accessibility"],
-    "neutral": ["performance"],
+    "weaknesses": [
+      "devops",
+      "responsive-design",
+      "accessibility"
+    ],
+    "neutral": [
+      "performance"
+    ],
     "link": "https://gitlab.com/steve5488/ecf-java-fx"
   },
   {
@@ -142,7 +168,9 @@
       "accessibility",
       "error-handling"
     ],
-    "weaknesses": ["testing"],
+    "weaknesses": [
+      "testing"
+    ],
     "neutral": [],
     "arcana": "kotlin",
     "skills": [
@@ -153,7 +181,9 @@
       "api-rest",
       "mysql",
       "github",
-      "ux-mobile"
+      "ux-mobile",
+      "responsive-design",
+      "accessibility"
     ],
     "link": "https://github.com/steve54630/FemSante"
   }

@@ -3,27 +3,45 @@
 import MenuButton from "@/components/menu-button";
 import { motion } from "framer-motion";
 import { buttons } from "@/data/menu";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import useMouseActivity from "@/hooks/useMouse";
+import TutorialOverlay, {
+  TUTORIAL_STORAGE_KEY,
+} from "@/components/tutorial-overlay";
 
 export default function PortfolioPage() {
   const showHelp = useMouseActivity();
+  /* null tant que le localStorage n'a pas ete lu, pour ne pas casser l'hydratation */
+  const [showTutorial, setShowTutorial] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (window.innerWidth > 768) {
-      const allButtons = Array.from(document.querySelectorAll("button"));
-      allButtons[0].focus();
+    try {
+      setShowTutorial(localStorage.getItem(TUTORIAL_STORAGE_KEY) !== "true");
+    } catch {
+      setShowTutorial(false);
     }
   }, []);
+
+  const closeTutorial = useCallback(() => {
+    try {
+      localStorage.setItem(TUTORIAL_STORAGE_KEY, "true");
+    } catch {
+      /* navigation privee : on ferme quand meme */
+    }
+    setShowTutorial(false);
+  }, []);
+
+  useEffect(() => {
+    if (showTutorial !== false || window.innerWidth <= 768) return;
+    document
+      .querySelector<HTMLButtonElement>("button[datatype=menu-button]")
+      ?.focus();
+  }, [showTutorial]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (window.innerWidth < 768) return;
-
-      if (e.key in ["ArrowUp", "ArrowDown", "Enter"]) {
-        e.preventDefault();
-      }
 
       const allButtons = Array.from(
         document.querySelectorAll("button[datatype=menu-button]")
@@ -86,10 +104,16 @@ export default function PortfolioPage() {
           Retour
         </button>
       </Link>
+      <button
+        onClick={() => setShowTutorial(true)}
+        aria-label="Revoir le tutoriel"
+        className="absolute top-4 right-4 h-12 w-12 rounded-full bg-black/70 font-drunkenhour text-3xl text-white shadow-lg transition hover:bg-red-600 focus:bg-red-600 focus:outline-2 focus:outline-white"
+      >
+        ?
+      </button>
       {buttons.map((button, index) => (
         <MenuButton
           key={index}
-          tabIndex={index}
           title={button.title}
           explanation={button.explanation}
           url={button.url}
@@ -97,6 +121,7 @@ export default function PortfolioPage() {
           type={button.type}
         />
       ))}
+      {showTutorial && <TutorialOverlay onClose={closeTutorial} />}
     </motion.nav>
   );
 }

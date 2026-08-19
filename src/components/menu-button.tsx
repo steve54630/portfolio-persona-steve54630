@@ -1,19 +1,21 @@
 import { MenuButtonProps } from "@/types/props";
 import Link from "next/link";
-import { forwardRef, Ref } from "react";
+import { forwardRef } from "react";
 
 const MenuButton = forwardRef<HTMLButtonElement, MenuButtonProps>(
   ({ title, explanation, url, color, type, onClickEffect, ...rest }, ref) => {
     const DivButton = () => (
       <button
-        className={`relative group inline-block px-5 py-5 focus:text-white hover:text-white focus:border-2 focus:border-dashed hover:border-2 hover:border-dashed text-gray-400  border-gray-500 rounded-lg text-5xl md:text-6xl sm:text-7xl lg:text-8xl font-drunkenhour ${color}`}
+        className={`group flex flex-col items-center gap-1 rounded-lg border-2 border-transparent px-5 py-3 text-gray-400 transition-colors hover:border-dashed hover:border-gray-500 hover:text-white focus:border-dashed focus:border-gray-500 focus:text-white ${color}`}
         {...rest}
         ref={ref}
         onClick={onClickEffect}
         datatype="menu-button"
       >
-        {title}
-        <span className="absolute font-serif bottom-0 right-0 mb-1 mr-1 text-xl text-gray-100 bg-black bg-opacity-70 px-5 py-3 rounded opacity-0 group-focus:opacity-100 group-hover:opacity-100 transition-opacity pointer-events-none">
+        <span className="font-drunkenhour text-[min(9vh,3rem)] leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:text-[min(9vh,3.75rem)] md:text-[min(9vh,4.5rem)] lg:text-[min(9vh,6rem)]">
+          {title}
+        </span>
+        <span className="font-sans text-sm text-gray-300 drop-shadow-[0_1px_3px_rgba(0,0,0,1)] transition-colors group-hover:text-white group-focus:text-white sm:text-base">
           {explanation}
         </span>
       </button>

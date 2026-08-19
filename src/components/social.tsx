@@ -54,11 +54,7 @@ function SocialDiagram({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (window.matchMedia("(pointers: coarse)").matches) return;
-
-      if (e.key in ["ArrowUp", "ArrowDown", "Enter", "Escape"]) {
-        e.preventDefault();
-      }
+      if (window.matchMedia("(pointer: coarse)").matches) return;
 
       const allButtons = Array.from(
         document.querySelectorAll("button[datatype=social]")
@@ -69,6 +65,7 @@ function SocialDiagram({
 
       switch (e.key) {
         case "ArrowUp":
+          e.preventDefault();
           const button =
             allButtons[
               (currentIndex - 1 + allButtons.length) % allButtons.length
@@ -77,6 +74,7 @@ function SocialDiagram({
           button.click();
           break;
         case "ArrowDown":
+          e.preventDefault();
           const button2 =
           allButtons[(currentIndex + 1) % allButtons.length]
           button2.focus();

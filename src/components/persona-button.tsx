@@ -1,11 +1,7 @@
+import { PersonaButtonProps } from "@/interface/persona";
 import { IPersona } from "@/types/persona";
 import Link from "next/link";
 import React, { ButtonHTMLAttributes, forwardRef } from "react";
-
-export interface PersonaButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
-  persona: IPersona;
-}
 
 const PersonaButton = forwardRef<HTMLButtonElement, PersonaButtonProps>(
   ({ persona, ...props }: { persona: IPersona }, ref) => {

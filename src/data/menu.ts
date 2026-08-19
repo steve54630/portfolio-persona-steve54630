@@ -31,8 +31,8 @@ export const buttons: MenuButtonProps[] = [
     },
     {
       title: "History",
-      explanation: "Mentions légales",
-      url: "/mentions-legales",
+      explanation: "Mon parcours",
+      url: "/history",
       color: "hover:bg-gray-600 focus:bg-gray-600",
       type: "link",
     },

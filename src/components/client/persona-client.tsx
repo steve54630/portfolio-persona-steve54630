@@ -15,17 +15,15 @@ export default function PersonaPageClient({ persona }: PersonaProps) {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!api || window.matchMedia("(pointers: coarse)").matches) return;
-
-      if (event.key in ["ArrowLeft", "ArrowRight", "Enter"]) {
-        event.preventDefault();
-      }
+      if (!api || window.matchMedia("(pointer: coarse)").matches) return;
 
       switch (event.key) {
         case "ArrowLeft":
+          event.preventDefault();
           api.scrollPrev();
           break;
         case "ArrowRight":
+          event.preventDefault();
           api.scrollNext();
           break;
         case "Escape":

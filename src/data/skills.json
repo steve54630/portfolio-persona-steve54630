@@ -14,6 +14,9 @@
   { "id": "javafx", "name": "JavaFX", "categoryId": "frameworks" },
   { "id": "nextjs", "name": "Next.js", "categoryId": "frameworks" },
   { "id": "rxjs", "name": "RxJS", "categoryId": "frameworks" },
+  { "id": "symfony", "name": "Symfony", "categoryId": "frameworks" },
+  { "id": "vue", "name": "Vue.js", "categoryId": "frameworks" },
+  { "id": "nuxt", "name": "Nuxt", "categoryId": "frameworks" },
 
   {
     "id": "responsive-design",
@@ -23,12 +26,15 @@
   { "id": "ui-ux", "name": "UI/UX Design", "categoryId": "design" },
   { "id": "accessibility", "name": "Accessibilite", "categoryId": "design" },
   { "id": "ux-mobile", "name": "UX Mobile", "categoryId": "design" },
+  { "id": "tailwind", "name": "Tailwind CSS", "categoryId": "design" },
 
   { "id": "mysql", "name": "MySQL", "categoryId": "bdd" },
   { "id": "sql-server", "name": "SQL Server", "categoryId": "bdd" },
   { "id": "mongo", "name": "MongoDB", "categoryId": "bdd" },
+  { "id": "doctrine", "name": "Doctrine ORM", "categoryId": "bdd" },
 
   { "id": "api-rest", "name": "API REST", "categoryId": "archi" },
+  { "id": "jwt", "name": "JWT", "categoryId": "archi" },
   { "id": "microservices", "name": "Microservices", "categoryId": "archi" },
   { "id": "nats", "name": "NATS", "categoryId": "archi" },
   { "id": "event-driven", "name": "Event-driven", "categoryId": "archi" },

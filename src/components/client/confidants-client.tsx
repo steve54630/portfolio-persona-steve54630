@@ -2,13 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ILink } from "@/types/link";
 import Link from "next/link";
 import useMouseActivity from "@/hooks/useMouse";
-
-interface ConfidantBookProps {
-  confidants: ILink[];
-}
+import { ConfidantBookProps } from "@/interface/confidant";
 
 export default function ConfidantBook({ confidants }: ConfidantBookProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,10 +48,6 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (window.innerWidth < 768) return;
-
-      if (e.key in ["ArrowLeft", "ArrowRight", "Enter"]) {
-        e.preventDefault();
-      }
 
       switch (e.key) {
         case "ArrowLeft":

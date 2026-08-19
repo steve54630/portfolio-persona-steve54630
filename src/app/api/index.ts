@@ -1,5 +1,6 @@
 import { ArcanaService } from "@/service/arcana.service";
 import { CategoryService } from "@/service/category.service";
+import { ExperienceService } from "@/service/experience.service";
 import { LinksService } from "@/service/links.service";
 import { PersonaService } from "@/service/persona.service";
 import { SkillService } from "@/service/skill.service";
@@ -11,4 +12,5 @@ export const arcanaService = new ArcanaService();
 export const personaService = new PersonaService(skillService, arcanaService);
 export const linksService = new LinksService();
 export const statusService = new StatusService();
+export const experienceService = new ExperienceService(skillService);
 
