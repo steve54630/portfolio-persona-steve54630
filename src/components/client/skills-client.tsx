@@ -4,26 +4,33 @@ import useMouseActivity from "@/hooks/useMouse";
 import { ICategory } from "@/types/category";
 import { ISkill } from "@/types/skill";
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import SkillPersonasPanel from "./skill-personas-panel";
 
 interface SkillsPageProps {
   skills: ISkill[];
   categories: ICategory[];
 }
 
-export default function SkillsPage({ skills, categories }: SkillsPageProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>(categories[0].id);
-  const showHelp = useMouseActivity();
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+const TOUTES = "toutes";
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+export default function SkillsPage({ skills, categories }: SkillsPageProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>(TOUTES);
+  const [selectedSkill, setSelectedSkill] = useState<ISkill | null>(null);
+  const showHelp = useMouseActivity();
+
+  /* copie avant tri : sort() mute le tableau recu en props */
+  const skillsAffiches = useMemo(
+    () =>
+      [...skills]
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .filter(
+          (skill) =>
+            selectedCategory === TOUTES ||
+            selectedCategory === skill.category?.id
+        ),
+    [skills, selectedCategory]
+  );
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -32,6 +39,8 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
       const allButtons = Array.from(
         document.querySelectorAll("button[datatype=categories]")
       ) as HTMLButtonElement[];
+      if (allButtons.length === 0) return;
+
       const currentIndex = allButtons.indexOf(
         document.activeElement as HTMLButtonElement
       );
@@ -63,6 +72,11 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const onglets: { id: string; name: string; icon: string }[] = [
+    { id: TOUTES, name: "Toutes", icon: "✨" },
+    ...categories,
+  ];
+
   return (
     <div className="flex flex-col items-center md:flex-row min-h-screen text-white">
       <Link
@@ -82,16 +96,18 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
           </div>
         )}
       </Link>
-      {/* --- Left Column: Categories --- */}
+
+      {/* --- Colonne gauche : catégories --- */}
       <aside className="md:w-1/4 w-screen p-4 justify-center items-center flex-col flex">
         <h2 className="flex text-4xl sm:text-6xl justify-center items-center w-fit p-4 font-drunkenhour m-10">
           Catégories
         </h2>
         <ul className="flex flex-row sm:flex-col overflow-x-auto w-3/4 gap-2 sm:overflow-visible">
-          {categories.map((cat) => (
+          {onglets.map((cat) => (
             <li key={cat.id} className="flex-shrink-0">
               <button
                 datatype="categories"
+                aria-pressed={selectedCategory === cat.id}
                 className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg transition ${
                   selectedCategory === cat.id
                     ? "bg-indigo-600 text-white"
@@ -99,7 +115,7 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
                 }`}
                 onClick={() => setSelectedCategory(cat.id)}
               >
-                <span>{cat.icon}</span>
+                <span aria-hidden="true">{cat.icon}</span>
                 <span>{cat.name}</span>
               </button>
             </li>
@@ -107,37 +123,35 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
         </ul>
       </aside>
 
-      {/* --- Right Column: Skills --- */}
+      {/* --- Colonne droite : compétences --- */}
       <main className="flex-1 flex flex-col p-6 justify-center items-center">
-        <h2 className="flex text-4xl sm:text-6xl justify-center items-center w-fit p-4 font-drunkenhour m-10">
+        <h2 className="flex text-4xl sm:text-6xl justify-center items-center w-fit p-4 font-drunkenhour mt-10 mb-2">
           Skills
         </h2>
-        <div className="grid bg-gray-800/50 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {skills
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .filter((skill) => {
-              if (!isMobile) return true;
-              return (
-                selectedCategory === skill.category?.id
-              );
-            })
-            .map((skill) => (
-              <div
-                key={skill.id}
-                className={`p-4 rounded-xl shadow hover:shadow-lg font-broken-home ${
-                  selectedCategory === skill.category?.id
-                    ? ""
-                    : "opacity-50"
-                } text-lg sm:text-3xl transition`}
-              >
-                <span>
-                  <span>{skill.category?.icon}</span>
-                  {skill.name}
-                </span>
-              </div>
-            ))}
+        <p className="mb-8 font-sans text-sm text-gray-300 sm:text-base">
+          Sélectionnez une compétence pour voir les projets qui l&apos;utilisent
+        </p>
+        <div className="grid bg-gray-800/50 rounded-xl p-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          {skillsAffiches.map((skill) => (
+            <button
+              key={skill.id}
+              datatype="skill"
+              onClick={() => setSelectedSkill(skill)}
+              className="p-4 rounded-xl shadow text-left font-broken-home text-lg sm:text-3xl transition hover:bg-indigo-600 hover:shadow-lg focus:bg-indigo-600 focus:outline-2 focus:outline-white"
+            >
+              <span aria-hidden="true">{skill.category?.icon}</span>
+              {skill.name}
+            </button>
+          ))}
         </div>
       </main>
+
+      {selectedSkill && (
+        <SkillPersonasPanel
+          skill={selectedSkill}
+          onClose={() => setSelectedSkill(null)}
+        />
+      )}
     </div>
   );
 }
