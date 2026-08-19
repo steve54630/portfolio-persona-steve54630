@@ -2,13 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ILink } from "@/types/link";
 import Link from "next/link";
 import useMouseActivity from "@/hooks/useMouse";
-
-interface ConfidantBookProps {
-  confidants: ILink[];
-}
+import { ConfidantBookProps } from "@/interface/confidant";
 
 export default function ConfidantBook({ confidants }: ConfidantBookProps) {
   const [currentIndex, setCurrentIndex] = useState(0);

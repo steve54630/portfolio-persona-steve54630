@@ -5,12 +5,8 @@ import { ICategory } from "@/types/category";
 import { ISkill } from "@/types/skill";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import SkillPersonasPanel from "./skill-personas-panel";
-
-interface SkillsPageProps {
-  skills: ISkill[];
-  categories: ICategory[];
-}
+import SkillUsagePanel from "./skill-usage-panel";
+import { SkillsPageProps } from "@/interface/skill";
 
 const TOUTES = "toutes";
 
@@ -147,7 +143,7 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
       </main>
 
       {selectedSkill && (
-        <SkillPersonasPanel
+        <SkillUsagePanel
           skill={selectedSkill}
           onClose={() => setSelectedSkill(null)}
         />

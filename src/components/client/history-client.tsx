@@ -1,14 +1,10 @@
 "use client";
 
 import useMouseActivity from "@/hooks/useMouse";
-import { IExperience } from "@/types/experience";
+import { HistoryClientProps } from "@/interface/history";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect } from "react";
-
-interface HistoryClientProps {
-  experiences: IExperience[];
-}
 
 export default function HistoryClient({ experiences }: HistoryClientProps) {
   const showHelp = useMouseActivity();

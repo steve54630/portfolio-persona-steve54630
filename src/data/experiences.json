@@ -1,11 +1,37 @@
 [
   {
+    "id": "exp-vpdive",
+    "role": "Développeur FullStack",
+    "company": "VPDive",
+    "period": "Février 2026 - Août 2026",
+    "description": "Refonte progressive de VPDive, plateforme de gestion de clubs de plongée : reconstruction de l'API REST (calendrier, gestion des membres, gestionnaire de fichiers) pour remplacer des contrôleurs legacy à session, migration de la stack UI front (Tailwind v4, Nuxt UI 3, Tiptap, VueFinder) et durcissement continu de la sécurité sur les endpoints exposés.",
+    "skillIds": [
+      "php",
+      "symfony",
+      "doctrine",
+      "mysql",
+      "jwt",
+      "api-rest",
+      "typescript",
+      "vue",
+      "nuxt",
+      "tailwind",
+      "git"
+    ]
+  },
+  {
     "id": "exp-alt",
     "role": "Développeur FullStack",
     "company": "Incubateur Tech Alt",
     "period": "2025",
     "description": "Conception complète d'API REST et sécurisation via JWT sous NestJS.",
-    "skillIds": ["nestjs", "react", "spring"]
+    "skillIds": [
+      "nestjs",
+      "react",
+      "spring",
+      "api-rest",
+      "jwt"
+    ]
   },
   {
     "id": "exp-freelance",
@@ -13,7 +39,16 @@
     "company": "Freelance",
     "period": "Depuis 2024",
     "description": "Développement d'une application Android/iOS native en Kotlin pour aider les femmes ayant des pathologies particulières.",
-    "skillIds": ["kotlin", "laravel"]
+    "skillIds": [
+      "kotlin",
+      "laravel",
+      "android-sdk",
+      "php",
+      "api-rest",
+      "mysql",
+      "github",
+      "ux-mobile"
+    ]
   },
   {
     "id": "exp-sogetrel",
@@ -21,6 +56,8 @@
     "company": "Sogetrel",
     "period": "2023",
     "description": "Optimisation de requêtes SQL Server et refactorisation complète d'un site de gestion de stock.",
-    "skillIds": ["sql-server"]
+    "skillIds": [
+      "sql-server"
+    ]
   }
 ]

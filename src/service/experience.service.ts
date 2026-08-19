@@ -27,6 +27,17 @@ export class ExperienceService {
   }
 
   /**
+   * Filtrer les expériences faisant appel à une compétence
+   * @param skillId ID de la compétence recherchée
+   * @returns les expériences concernées
+   */
+  public filterExperiencesBySkill(skillId: string): IExperience[] {
+    return this.experiences.filter((experience) =>
+      experience.skills.some((skill) => skill.id === skillId)
+    );
+  }
+
+  /**
    * Trouver une expérience par son id
    * @param id ID de l'expérience à trouver
    * @returns expérience demandée
