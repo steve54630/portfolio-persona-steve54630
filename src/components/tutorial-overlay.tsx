@@ -28,7 +28,7 @@ const entries = [
   },
   {
     icon: "🤝",
-    title: "Confidents",
+    title: "Confidants",
     text: "Mes Confidants : les différentes façons de me joindre.",
   },
 ];
