@@ -76,35 +76,35 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="tutorial-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/97 p-4 sm:p-8"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
     >
       <motion.div
         initial={{ y: 20, scale: 0.97 }}
         animate={{ y: 0, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-2xl border-2 border-red-600 bg-black p-8 shadow-2xl sm:max-w-4xl sm:p-12"
+        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border-2 border-red-600 bg-black p-6 shadow-2xl sm:p-8"
       >
         <h2
           id="tutorial-title"
-          className="text-center font-drunkenhour text-5xl text-white sm:text-6xl"
+          className="text-center font-drunkenhour text-4xl text-white sm:text-5xl"
         >
           Glossaire
         </h2>
-        <p className="mt-3 text-center font-sans text-base text-gray-400 sm:text-lg">
+        <p className="mt-2 text-center font-sans text-sm text-gray-400 sm:text-base">
           Ce portfolio emprunte les codes du jeu Persona. Voici la traduction.
         </p>
 
-        <dl className="mt-8 space-y-5 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-6 sm:space-y-0">
+        <dl className="mt-6 space-y-4">
           {entries.map((entry) => (
-            <div key={entry.title} className="flex gap-4">
-              <span aria-hidden="true" className="text-3xl leading-none">
+            <div key={entry.title} className="flex gap-3">
+              <span aria-hidden="true" className="text-2xl leading-none">
                 {entry.icon}
               </span>
               <div>
-                <dt className="font-drunkenhour text-3xl text-red-500">
+                <dt className="font-drunkenhour text-2xl text-red-500">
                   {entry.title}
                 </dt>
-                <dd className="font-sans text-base text-gray-200 sm:text-lg">
+                <dd className="font-sans text-sm text-gray-200 sm:text-base">
                   {entry.text}
                 </dd>
               </div>
@@ -112,7 +112,7 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
           ))}
         </dl>
 
-        <p className="mt-8 rounded-lg bg-gray-900 p-4 text-center font-sans text-base text-gray-300 sm:text-lg">
+        <p className="mt-6 rounded-lg bg-gray-900 p-3 text-center font-sans text-sm text-gray-300">
           Au clavier : <kbd className="font-bold text-white">↑</kbd>{" "}
           <kbd className="font-bold text-white">↓</kbd> pour naviguer,{" "}
           <kbd className="font-bold text-white">Entrée</kbd> pour valider,{" "}
@@ -122,7 +122,7 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
         <button
           ref={closeRef}
           onClick={onClose}
-          className="mt-8 w-full rounded-lg bg-red-600 px-6 py-4 font-drunkenhour text-4xl text-white transition hover:bg-red-500 focus:bg-red-500 focus:outline-2 focus:outline-offset-2 focus:outline-white"
+          className="mt-6 w-full rounded-lg bg-red-600 px-6 py-3 font-drunkenhour text-3xl text-white transition hover:bg-red-500 focus:bg-red-500 focus:outline-2 focus:outline-offset-2 focus:outline-white"
         >
           Commencer
         </button>
