@@ -1,31 +1,8 @@
-import { useEffect, useState } from "react";
-
+/*
+ * L'aide clavier doit rester decouvrable en permanence sur desktop : on ne la
+ * masque plus au mouvement de la souris. Chaque appelant se charge de la
+ * cacher sur mobile (classes `hidden sm:*`), ou le tactile ne concerne pas.
+ */
 export default function useMouseActivity() {
-  const [mouseActivity, setMouseActivity] = useState(false);
-  const [showHelp, setShowHelp] = useState(true);
-
-  useEffect(() => {
-    const mouseMoveListener = () => {
-      if (mouseActivity) return;
-      setMouseActivity(true);
-      setShowHelp(false);
-    };
-
-    const keyDownListener = () => {
-      if (mouseActivity) {
-        setMouseActivity(false);
-      }
-      setShowHelp(true);
-    };
-
-    window.addEventListener("mousemove", mouseMoveListener);
-    window.addEventListener("keydown", keyDownListener);
-
-    return () => {
-      window.removeEventListener("mousemove", mouseMoveListener);
-      window.removeEventListener("keydown", keyDownListener);
-    };
-  }, [mouseActivity]);
-
-  return showHelp;
+  return true;
 }

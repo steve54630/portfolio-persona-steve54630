@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import { ImCross } from "react-icons/im";
 
 export const TUTORIAL_STORAGE_KEY = "portfolio-tutorial-vu";
 
@@ -28,7 +29,7 @@ const entries = [
   },
   {
     icon: "🤝",
-    title: "Confidents",
+    title: "Confidants",
     text: "Mes Confidants : les différentes façons de me joindre.",
   },
 ];
@@ -76,27 +77,40 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="tutorial-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/85 backdrop-blur-sm p-4"
     >
       <motion.div
         initial={{ y: 20, scale: 0.97 }}
         animate={{ y: 0, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border-2 border-red-600 bg-black p-6 shadow-2xl sm:p-8"
+        onClick={(e) => e.stopPropagation()}
+        className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border-2 border-red-600/80 bg-zinc-950 p-6 shadow-[0_0_35px_rgba(220,38,38,0.25)] sm:p-8"
       >
+        <button
+          onClick={onClose}
+          aria-label="Fermer la fenêtre"
+          className="absolute top-6 right-6 text-xl text-zinc-400 transition hover:text-red-500 focus:outline-none"
+        >
+          <ImCross />
+        </button>
+
         <h2
           id="tutorial-title"
           className="text-center font-drunkenhour text-4xl text-white sm:text-5xl"
         >
           Glossaire
         </h2>
-        <p className="mt-2 text-center font-sans text-sm text-gray-400 sm:text-base">
+        <p className="mt-2 text-center font-sans text-sm text-zinc-400 sm:text-base">
           Ce portfolio emprunte les codes du jeu Persona. Voici la traduction.
         </p>
 
-        <dl className="mt-6 space-y-4">
+        <dl className="mt-6 space-y-3">
           {entries.map((entry) => (
-            <div key={entry.title} className="flex gap-3">
+            <div
+              key={entry.title}
+              className="flex gap-3 rounded-xl border border-zinc-800 bg-zinc-900/80 p-4"
+            >
               <span aria-hidden="true" className="text-2xl leading-none">
                 {entry.icon}
               </span>
@@ -104,7 +118,7 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
                 <dt className="font-drunkenhour text-2xl text-red-500">
                   {entry.title}
                 </dt>
-                <dd className="font-sans text-sm text-gray-200 sm:text-base">
+                <dd className="font-sans text-sm text-zinc-200 sm:text-base">
                   {entry.text}
                 </dd>
               </div>
@@ -112,7 +126,7 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
           ))}
         </dl>
 
-        <p className="mt-6 rounded-lg bg-gray-900 p-3 text-center font-sans text-sm text-gray-300">
+        <p className="mt-6 rounded-xl border border-zinc-800 bg-zinc-900/80 p-3 text-center font-sans text-sm text-zinc-300">
           Au clavier : <kbd className="font-bold text-white">↑</kbd>{" "}
           <kbd className="font-bold text-white">↓</kbd> pour naviguer,{" "}
           <kbd className="font-bold text-white">Entrée</kbd> pour valider,{" "}
@@ -122,7 +136,7 @@ export default function TutorialOverlay({ onClose }: TutorialOverlayProps) {
         <button
           ref={closeRef}
           onClick={onClose}
-          className="mt-6 w-full rounded-lg bg-red-600 px-6 py-3 font-drunkenhour text-3xl text-white transition hover:bg-red-500 focus:bg-red-500 focus:outline-2 focus:outline-offset-2 focus:outline-white"
+          className="mt-8 w-full rounded-xl bg-red-600 py-3.5 font-drunkenhour text-2xl text-white shadow-lg shadow-red-600/20 transition hover:bg-red-500 focus:bg-red-500 focus:outline-none"
         >
           Commencer
         </button>

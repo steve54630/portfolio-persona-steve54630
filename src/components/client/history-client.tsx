@@ -1,25 +1,27 @@
 "use client";
 
 import useMouseActivity from "@/hooks/useMouse";
-import { HistoryClientProps } from "@/interface/history";
+import { HistoryClientProps } from "@/types/props";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function HistoryClient({ experiences }: HistoryClientProps) {
   const showHelp = useMouseActivity();
+  const router = useRouter();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "Escape") return;
-      e.preventDefault();
-      document.getElementById("back-button")?.focus();
-      document.getElementById("back-button")?.click();
+      if (e.key === "Escape") {
+        e.preventDefault();
+        router.push("/");
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [router]);
 
   return (
     <motion.main
@@ -30,20 +32,24 @@ export default function HistoryClient({ experiences }: HistoryClientProps) {
       className="min-h-screen px-4 pb-20 pt-6 sm:px-8"
     >
       <div className="mb-10 flex flex-wrap items-center gap-4">
-        <Link href="/menu">
+        <Link href="/">
           <button
             id="back-button"
-            className="rounded-lg px-8 py-4 font-drunkenhour text-3xl text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-red-600 focus:bg-red-600 focus:outline-none"
+            className="rounded-lg bg-zinc-900 px-8 py-4 font-drunkenhour text-3xl text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-red-600 focus:bg-red-600 focus:outline-none"
           >
             Retour
           </button>
         </Link>
-        {showHelp && (
-          <span className="hidden rounded bg-black px-3 py-1 text-sm text-white shadow-lg sm:inline">
-            Echap pour revenir au menu
-          </span>
-        )}
       </div>
+
+      {showHelp && (
+        <div
+          role="status"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+        >
+          [ESC] Retour
+        </div>
+      )}
 
       <header className="mb-14 text-center">
         <h1 className="font-drunkenhour text-5xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:text-7xl">
@@ -63,34 +69,40 @@ export default function HistoryClient({ experiences }: HistoryClientProps) {
             transition={{ duration: 0.4, delay: index * 0.15 }}
             className="relative mb-12 last:mb-0"
           >
+            {/* Losange marqueur de la timeline */}
             <span
               aria-hidden="true"
-              className="absolute -left-[35px] top-2 h-4 w-4 rotate-45 border-2 border-white bg-red-600 sm:-left-[51px]"
+              className="absolute -left-7.75 top-2 h-4 w-4 rotate-45 border-2 border-white bg-red-600 sm:-left-11.75"
             />
 
-            <article className="rounded-2xl bg-black/75 p-5 shadow-lg sm:p-6">
+            <article className="rounded-2xl bg-black/80 border border-zinc-900/80 p-5 shadow-xl backdrop-blur-sm sm:p-6 transition-colors hover:border-red-600/50">
               <p className="font-drunkenhour text-2xl text-red-500 sm:text-3xl">
                 {experience.period}
               </p>
               <h2 className="mt-1 font-drunkenhour text-3xl text-white sm:text-4xl">
                 {experience.role}
               </h2>
-              <p className="mt-1 font-sans text-lg text-gray-300 sm:text-xl">
+              <p className="mt-1 font-sans text-lg text-zinc-400 font-medium sm:text-xl">
                 {experience.company}
               </p>
-              <p className="mt-4 text-justify font-sans text-base text-gray-100 sm:text-lg">
+              <p className="mt-4 font-sans text-base leading-relaxed text-zinc-200 sm:text-lg">
                 {experience.description}
               </p>
 
-              {experience.skills.length > 0 && (
-                <ul className="mt-5 flex flex-wrap gap-2">
+              {experience.skills && experience.skills.length > 0 && (
+                <ul 
+                  className="mt-5 flex flex-wrap gap-2"
+                  aria-label={`Compétences utilisées chez ${experience.company}`}
+                >
                   {experience.skills.map((skill) => (
                     <li
                       key={skill.id}
-                      className="flex items-center gap-1 rounded-full bg-gray-800 px-3 py-1 font-sans text-sm text-gray-100"
+                      className="flex items-center gap-1.5 rounded-full bg-zinc-900 border border-zinc-800 px-3 py-1 font-sans text-sm text-zinc-200"
                     >
-                      <span aria-hidden="true">{skill.category?.icon}</span>
-                      {skill.name}
+                      {skill.category?.icon && (
+                        <span aria-hidden="true">{skill.category.icon}</span>
+                      )}
+                      <span>{skill.name}</span>
                     </li>
                   ))}
                 </ul>

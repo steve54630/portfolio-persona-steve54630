@@ -1,198 +1,176 @@
 "use client";
 
 import { IStatus } from "@/types/status";
-import React, { useEffect, useState } from "react";
-import { Progress } from "../ui/progress";
-import { HoverCard, HoverCardTrigger } from "@radix-ui/react-hover-card";
-import { HoverCardContent } from "../ui/hover-card";
+import React, { useEffect, useState, useCallback } from "react";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "../ui/hover-card";
 import Link from "next/link";
 import SocialDiagram from "../social";
 import MenuButton from "../menu-button";
 import useMouseActivity from "@/hooks/useMouse";
 
-
-function StatusViewer({ stats }: { stats: IStatus }) {
+export function StatusViewer({ stats }: { stats: IStatus }) {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [statOpen, setStatOpen] = useState<boolean>(false);
   const showHelp = useMouseActivity();
+
+  // Calcul d'âge précis
   const birthdate = new Date(stats.level);
   const today = new Date();
-  const age = Math.floor((today.getTime() - birthdate.getTime()) / 31557600000);
+  let age = today.getFullYear() - birthdate.getFullYear();
+  const m = today.getMonth() - birthdate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+    age--;
+  }
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+  // Navigation Clavier fluide
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
       if (window.matchMedia("(pointer: coarse)").matches || statOpen) return;
 
-      const allButtons = Array.from(
-        document.querySelectorAll("button[datatype=menu-button]")
-      ) as HTMLButtonElement[];
-      const currentIndex = allButtons.indexOf(
-        document.activeElement as HTMLButtonElement
+      const buttons = Array.from(
+        document.querySelectorAll<HTMLButtonElement>("button[datatype=menu-button]")
       );
+      if (buttons.length === 0) return;
+
+      const activeEl = document.activeElement as HTMLButtonElement;
+      const currentIndex = buttons.indexOf(activeEl);
 
       switch (e.key) {
         case "ArrowUp":
           e.preventDefault();
-          const button =
-            allButtons[
-              (currentIndex - 1 + allButtons.length) % allButtons.length
-            ];
-          button.focus();
+          const prevIndex = currentIndex <= 0 ? buttons.length - 1 : currentIndex - 1;
+          buttons[prevIndex].focus();
           break;
         case "ArrowDown":
           e.preventDefault();
-          allButtons[(currentIndex + 1) % allButtons.length].focus();
+          const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % buttons.length;
+          buttons[nextIndex].focus();
           break;
         case "Escape":
           e.preventDefault();
           document.getElementById("back-button")?.click();
           break;
-        case "Enter":
-          e.preventDefault();
-          (document.activeElement as HTMLButtonElement)?.click();
-          break;
       }
-    };
+    },
+    [statOpen]
+  );
+
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [statOpen]);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [handleKeyDown]);
 
   return (
-    <article className="relative min-h-screen max-w-screen flex flex-col sm:gap-20 sm:flex-row justify-center items-center">
-      <Link className="sm:absolute mb-5 sm:mb-0 top-5 left-5" href="/menu">
+    <article
+      role="main"
+      aria-label="Fiche de statut du personnage"
+      className="site-backdrop relative min-h-screen w-full bg-fixed p-4 sm:p-8 flex flex-col sm:flex-row items-center justify-center gap-8 overflow-x-hidden"
+    >
+      {/* Aide vocale RGAA */}
+      <div className="sr-only" aria-live="polite">
+        Menu Statut de Retournay Steve. Utilisez les flèches haut et bas pour parcourir l&apos;équipement et les compétences.
+      </div>
+
+      {/* Bouton Retour Persona */}
+      <Link className="absolute top-5 left-5 z-30" href="/">
         <button
           id="back-button"
-          className="px-8 py-4 font-drunkenhour text-5xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
+          className="px-6 py-3 font-drunkenhour text-2xl text-white bg-black/80 backdrop-blur-md border border-red-500/60 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"
         >
-          Retour
+          ← RETOUR
         </button>
       </Link>
-      <img
-        src="/images/avatar.png"
-        className="mb-5 sm:mb-0 p-5 sm:p-0 sm:w-2/5"
-        alt="Retournay Steve"
-      />
-      <section className="p-3 flex flex-col items-center sm:justify-center sm:gap-18"></section>
-      {showHelp && <div className="absolute bottom-5 right-5 bg-black text-white px-3 py-2 rounded shadow-lg w-75 hidden sm:flex sm:opacity-100">
-        Echap pour revenir en arrière, Utilisez les ↑ ↓ pour naviguer et Entree
-        pour choisir
-      </div>}
-      <section className="flex flex-col justify-center items-center w-fit sm:mt-10">
-        <header className="flex flex-col justify-center items-center sm:text-4xl w-3/4 bg-white/60 text-3xl ml-10 p-10 clip-dynamic">
-          <h1 className="font-broken-home text-black text-4xl ">
-            Retournay Steve
+
+      {/* Avatar Persona */}
+      <div className="relative mt-16 sm:mt-0 max-w-sm sm:max-w-md w-full flex justify-center">
+        <img
+          src="/images/avatar.png"
+          className="w-4/5 sm:w-full object-contain filter drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]"
+          alt="Avatar de Retournay Steve"
+        />
+      </div>
+
+      {/* Section Contenu Principal (Panneau dépoli) */}
+      <section className="flex flex-col items-center justify-center w-full max-w-lg bg-black/80 backdrop-blur-md p-6 rounded-2xl border-2 border-red-500/60 shadow-[0_0_25px_rgba(220,38,38,0.35)] z-10">
+        
+        {/* Nom & Niveau */}
+        <header className="w-full flex flex-col items-center border-b border-red-500/40 pb-4 mb-4">
+          <h1 className="font-broken-home text-white text-3xl sm:text-4xl tracking-wider text-center">
+            RETOURNAY STEVE
           </h1>
-          <h1 className="font-serif clip-path text-3xl text-black p-7">
+
+          <div className="mt-2 text-zinc-200">
             <HoverCard>
-              <HoverCardTrigger>
-                Lv. <span className="font-broken-home">{age} </span>
+              <HoverCardTrigger asChild>
+                <button className="cursor-help px-3 py-1 bg-red-600/30 border border-red-500 rounded text-lg font-mono hover:bg-red-600/50 transition">
+                  LVL. <span className="font-bold text-white">{age}</span>
+                </button>
               </HoverCardTrigger>
-              <HoverCardContent>
-                <p className="font-sans text-xl text-center bg-white/50">
-                  Mon age
-                </p>
+              <HoverCardContent className="bg-zinc-950 border border-red-500 text-white p-3 text-sm rounded shadow-xl">
+                Âge actuel (Calculé dynamiquement)
               </HoverCardContent>
             </HoverCard>
-          </h1>
+          </div>
         </header>
-        <dl className="flex flex-row gap-10 text-3xl m-5 sm:ml-10 p-5 bg-white">
-          <HoverCard>
-            <HoverCardTrigger>
-              <div className="flex flex-col">
-                <Progress
-                  color="bg-green-500/50"
-                  value={stats.hp}
-                  max={stats.maxHp}
-                />
-                <h3>
-                  <dt> HP : </dt>
-                  <dd>
-                    {stats.hp}/{stats.maxHp}
-                  </dd>
-                </h3>
-              </div>
-            </HoverCardTrigger>
-            <HoverCardContent>
-              <p className="font-sans text-xl text-center bg-white/50">
-                Le carburant vital avant le prochain bug critique : Encore
-                debout, après 10 <i>npm run dev</i>
-              </p>
-            </HoverCardContent>
-          </HoverCard>
-          <HoverCard>
-            <HoverCardTrigger>
-              <div className="flex flex-col">
-                <Progress
-                  color="bg-blue-500/50"
-                  value={stats.sp}
-                  max={stats.maxSp}
-                />
-                <h3>
-                  <dt> SP : </dt>
-                  <dd>
-                    {stats.sp}/{stats.maxSp}
-                  </dd>
-                </h3>
-              </div>
-            </HoverCardTrigger>
-            <HoverCardContent>
-              <p className="font-sans text-xl text-center bg-white/50">
-                Utilisé pour trouver mes idées de génie (ou pas): Toujours prêt
-                à shipper une feature brillante !!
-              </p>
-            </HoverCardContent>
-          </HoverCard>
-        </dl>
-        <nav className="flex flex-col my-10">
+
+        {/* Navigation Équipement / Stats */}
+        <nav className="w-full flex flex-col gap-2 my-4" aria-label="Équipement et compétences">
           <MenuButton
-            title={"Weapon"}
+            title={"WEAPON"}
             explanation={"Mon CV en ligne"}
-            color={"hover:bg-blue-600 focus:bg-blue-600"}
-            onClickEffect={() => window.open("https://tinyurl.com/cvofsteve")}
+            color={"hover:bg-blue-600/80 focus:bg-blue-600"}
+            onClickEffect={() => window.open("https://tinyurl.com/cvofsteve", "_blank")}
             type={"button"}
           />
           <MenuButton
-            title={"Armor"}
-            explanation={"Mon CV papier"}
-            color={"hover:bg-red-600 focus:bg-red-600"}
+            title={"ARMOR"}
+            explanation={"Mon CV papier (PDF)"}
+            color={"hover:bg-red-600/80 focus:bg-red-600"}
             onClickEffect={() =>
               window.open(
-                "https://drive.google.com/file/d/1TWww4slygpys7KzfSWN2dghks2mkQbGr/view?usp=drive_link"
+                "https://drive.google.com/file/d/1TWww4slygpys7KzfSWN2dghks2mkQbGr/view?usp=drive_link",
+                "_blank"
               )
             }
             type={"button"}
           />
           <MenuButton
-            title={"Socials"}
-            explanation={"Comment je pense?"}
-            color={"hover:bg-green-600 focus:bg-green-600"}
+            title={"SOCIALS"}
+            explanation={"Statistiques sociales & soft skills"}
+            color={"hover:bg-emerald-600/80 focus:bg-emerald-600"}
             onClickEffect={() => setStatOpen(!statOpen)}
             type={"button"}
           />
         </nav>
+
+        {/* Diagramme Social Modal/Panel */}
         {statOpen && (
-          <SocialDiagram
-            setOpen={setStatOpen}
-            status={stats}
-            isMobile={isMobile}
-          />
+          <div className="w-full mt-4">
+            <SocialDiagram
+              setOpen={setStatOpen}
+              status={stats}
+              isMobile={isMobile}
+            />
+          </div>
         )}
       </section>
+
+      {/* Barre de raccourcis */}
+      {showHelp && !statOpen && (
+        <div
+          role="status"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+        >
+          [↑ / ↓] Sélectionner | [ESC] Retour
+        </div>
+      )}
     </article>
   );
 }
-
-export default StatusViewer;

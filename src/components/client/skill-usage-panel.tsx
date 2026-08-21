@@ -1,12 +1,13 @@
 "use client";
 
-import { SkillUsagePanelProps } from "@/interface/skill";
 import { IExperience } from "@/types/experience";
 import { IPersona } from "@/types/persona";
+import { SkillUsagePanelProps } from "@/types/props";
 import axios from "axios";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { ImCross } from "react-icons/im";
 
 export default function SkillUsagePanel({
   skill,
@@ -21,11 +22,7 @@ export default function SkillUsagePanel({
     closeRef.current?.focus({ preventScroll: true });
   }, []);
 
-  /*
-   * La page Skills ecoute les fleches et Echap sur window. On intercepte en
-   * phase de capture pour que la categorie selectionnee ne change pas derriere
-   * le panneau, et pour qu'Echap le ferme au lieu de revenir au menu.
-   */
+  /* Interception des touches clavier (Escape) */
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       e.stopImmediatePropagation();
@@ -40,7 +37,7 @@ export default function SkillUsagePanel({
     return () => window.removeEventListener("keydown", handleKeyDown, true);
   }, [onClose]);
 
-  /* URLs relatives : ne dependent pas de NEXT_PUBLIC_API_URL, fige sur un port en dev */
+  /* Fetching des données liées à la compétence */
   useEffect(() => {
     let annule = false;
 
@@ -73,49 +70,83 @@ export default function SkillUsagePanel({
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.25 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="skill-panel-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4 overflow-y-auto"
     >
       <motion.div
-        initial={{ y: 20, scale: 0.97 }}
+        initial={{ y: 20, scale: 0.95 }}
         animate={{ y: 0, scale: 1 }}
-        transition={{ duration: 0.25 }}
-        className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-2xl border-2 border-red-600 bg-black p-6 shadow-2xl sm:p-8"
+        exit={{ y: 20, scale: 0.95 }}
+        transition={{ duration: 0.2 }}
+        onClick={(e) => e.stopPropagation()} // Empêche la fermeture lors du clic dans le contenu
+        className="relative max-h-[85vh] w-full max-w-xl overflow-y-auto rounded-2xl border-2 border-red-600/80 bg-zinc-950 p-6 shadow-[0_0_35px_rgba(220,38,38,0.25)] sm:p-8"
       >
+        {/* Bouton Croix Fermer Top Right */}
+        <button
+          onClick={onClose}
+          aria-label="Fermer la fenêtre"
+          className="absolute top-6 right-6 text-xl text-zinc-400 hover:text-red-500 transition focus:outline-none"
+        >
+          <ImCross />
+        </button>
+
+        {/* Titre & Catégorie */}
         <h2
           id="skill-panel-title"
-          className="flex items-center gap-3 font-drunkenhour text-4xl text-white sm:text-5xl"
+          className="flex items-center gap-3 font-drunkenhour text-3xl sm:text-5xl text-white pr-8"
         >
-          <span aria-hidden="true">{skill.category?.icon}</span>
+          <span aria-hidden="true" className="text-2xl sm:text-4xl">
+            {skill.category?.icon}
+          </span>
           {skill.name}
         </h2>
-        <p className="mt-2 font-sans text-sm text-gray-400 sm:text-base">
-          {chargement && "Recherche en cours…"}
-          {erreur && "Les résultats n'ont pas pu être chargés."}
-          {!chargement &&
-            !erreur &&
-            total === 0 &&
-            "Aucun projet ni aucune expérience ne fait appel à cette compétence pour le moment."}
-          {!chargement && !erreur && total > 0 && "Où je l'ai mise en œuvre :"}
-        </p>
 
+        {/* Skeleton pendant le chargement */}
+        {chargement && (
+          <div className="mt-6 space-y-4 animate-pulse">
+            <div className="h-4 bg-zinc-800 rounded w-1/3"></div>
+            <div className="h-16 bg-zinc-900 rounded-xl"></div>
+            <div className="h-16 bg-zinc-900 rounded-xl"></div>
+          </div>
+        )}
+
+        {/* État d'erreur */}
+        {erreur && (
+          <p className="mt-6 rounded-xl border border-red-900 bg-red-950/40 p-4 font-sans text-sm text-red-300 sm:text-base">
+            Les résultats n&apos;ont pas pu être chargés.
+          </p>
+        )}
+
+        {/* État vide */}
+        {!chargement && !erreur && total === 0 && (
+          <p className="mt-6 font-sans text-sm text-zinc-400 sm:text-base">
+            Aucun projet ni aucune expérience ne fait appel à cette compétence
+            pour le moment.
+          </p>
+        )}
+
+        {/* Section Projets (Personas) */}
         {personas !== null && personas.length > 0 && (
-          <section className="mt-5">
-            <h3 className="font-drunkenhour text-2xl text-red-500">Projets</h3>
-            <ul className="mt-2 space-y-3">
+          <section className="mt-6">
+            <h3 className="font-drunkenhour text-2xl text-red-500 tracking-wide">
+              Projets
+            </h3>
+            <ul className="mt-3 space-y-3">
               {personas.map((persona) => (
                 <li key={persona.id}>
                   <Link
                     href={`/persona/${persona.id}`}
-                    className="flex flex-col gap-1 rounded-xl bg-gray-900 p-4 transition hover:bg-gray-800 focus:bg-gray-800 focus:outline-2 focus:outline-white"
+                    className="group flex flex-col gap-1.5 rounded-xl bg-zinc-900/80 border border-zinc-800 p-4 transition hover:border-red-600/60 hover:bg-zinc-900 focus:bg-zinc-900 focus:outline-none"
                   >
-                    <span className="w-fit rounded-full bg-red-600/70 px-3 py-1 font-broken-home text-sm text-white">
+                    <span className="w-fit rounded-full bg-red-600/20 border border-red-600/40 px-3 py-0.5 font-broken-home text-xs text-red-400">
                       {persona.arcana.name}
                     </span>
-                    <span className="font-sans text-lg text-white">
+                    <span className="font-sans text-base sm:text-lg text-zinc-200 group-hover:text-white font-medium">
                       {persona.title}
                     </span>
                   </Link>
@@ -125,23 +156,24 @@ export default function SkillUsagePanel({
           </section>
         )}
 
+        {/* Section Expériences */}
         {experiences !== null && experiences.length > 0 && (
-          <section className="mt-5">
-            <h3 className="font-drunkenhour text-2xl text-red-500">
+          <section className="mt-6">
+            <h3 className="font-drunkenhour text-2xl text-red-500 tracking-wide">
               Expériences
             </h3>
-            <ul className="mt-2 space-y-3">
+            <ul className="mt-3 space-y-3">
               {experiences.map((experience) => (
                 <li key={experience.id}>
                   <Link
                     href="/history"
-                    className="flex flex-col gap-1 rounded-xl bg-gray-900 p-4 transition hover:bg-gray-800 focus:bg-gray-800 focus:outline-2 focus:outline-white"
+                    className="group flex flex-col gap-1.5 rounded-xl bg-zinc-900/80 border border-zinc-800 p-4 transition hover:border-red-600/60 hover:bg-zinc-900 focus:bg-zinc-900 focus:outline-none"
                   >
-                    <span className="w-fit rounded-full bg-gray-700 px-3 py-1 font-broken-home text-sm text-white">
+                    <span className="w-fit rounded-full bg-zinc-800 border border-zinc-700 px-3 py-0.5 font-mono text-xs text-zinc-300">
                       {experience.period}
                     </span>
-                    <span className="font-sans text-lg text-white">
-                      {experience.role} — {experience.company}
+                    <span className="font-sans text-base sm:text-lg text-zinc-200 group-hover:text-white font-medium">
+                      {experience.role} — <span className="text-zinc-400">{experience.company}</span>
                     </span>
                   </Link>
                 </li>
@@ -150,10 +182,11 @@ export default function SkillUsagePanel({
           </section>
         )}
 
+        {/* Bouton de Fermeture bas */}
         <button
           ref={closeRef}
           onClick={onClose}
-          className="mt-6 w-full rounded-lg bg-red-600 px-6 py-3 font-drunkenhour text-2xl text-white transition hover:bg-red-500 focus:bg-red-500 focus:outline-2 focus:outline-offset-2 focus:outline-white"
+          className="mt-8 w-full rounded-xl bg-red-600 py-3.5 font-drunkenhour text-2xl text-white transition hover:bg-red-500 focus:bg-red-500 focus:outline-none shadow-lg shadow-red-600/20"
         >
           Fermer
         </button>

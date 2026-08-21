@@ -1,4 +1,4 @@
-import StatusViewer from "@/components/client/status-viewer";
+import { StatusViewer } from "@/components/client/status-viewer";
 import axios from "axios";
 
 export const dynamic = "force-dynamic";

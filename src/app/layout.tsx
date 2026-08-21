@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-[url('/images/menu-background.jpg')] antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} site-backdrop antialiased`}
       >
         {children}
         <LegalFooter />
