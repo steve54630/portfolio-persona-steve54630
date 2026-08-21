@@ -14,6 +14,8 @@ export interface MenuButtonProps
   color: string;
   type : "button" | "link"
   onClickEffect?: () => void
+  /** Remplace la taille par defaut du libelle (classes Tailwind text-*) */
+  titleSizeClassName?: string
 }
 
 export interface PersonaProps extends React.HTMLAttributes<HTMLDivElement> {
