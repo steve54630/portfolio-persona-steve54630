@@ -4,7 +4,6 @@ import MenuButton from "@/components/menu-button";
 import { motion } from "framer-motion";
 import { buttons } from "@/data/menu";
 import { useCallback, useEffect, useState } from "react";
-import Link from "next/link";
 import useMouseActivity from "@/hooks/useMouse";
 import TutorialOverlay, {
   TUTORIAL_STORAGE_KEY,
@@ -41,7 +40,9 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (window.innerWidth < 768) return;
+
+      // Bloque la navigation clavier sous-jacente sur mobile ou si le tutoriel est ouvert
+      if (window.innerWidth < 768 || showTutorial) return;
 
       const allButtons = Array.from(
         document.querySelectorAll("button[datatype=menu-button]")
@@ -50,36 +51,35 @@ export default function PortfolioPage() {
         document.activeElement as HTMLButtonElement
       );
 
-      if (document.activeElement === document.body) allButtons[0].focus();
+      if (document.activeElement === document.body) allButtons[0]?.focus();
 
       switch (e.key) {
+        case "h":
+          e.preventDefault();
+          setShowTutorial((prev) => !prev);
+          break;
         case "ArrowUp":
           e.preventDefault();
-          const button =
+          const prevButton =
             allButtons[
               (currentIndex - 1 + allButtons.length) % allButtons.length
             ];
-          button.focus();
+          prevButton?.focus();
           break;
         case "ArrowDown":
           e.preventDefault();
-          allButtons[(currentIndex + 1) % allButtons.length].focus();
+          allButtons[(currentIndex + 1) % allButtons.length]?.focus();
           break;
         case "Enter":
           e.preventDefault();
           (document.activeElement as HTMLButtonElement)?.click();
-          break;
-        case "Escape":
-          e.preventDefault();
-          document.getElementById("back-button")?.focus();
-          document.getElementById("back-button")?.click();
           break;
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [showTutorial]);
 
   return (
     <motion.nav
@@ -88,29 +88,32 @@ export default function PortfolioPage() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
       className="flex flex-col bg-[url('/images/menu-background.jpg')] bg-cover bg-center items-center justify-center h-screen"
-      aria-label="Menu principal navigable avec les fleches du clavier "
+      aria-label="Menu principal navigable avec les fleches du clavier"
     >
-      {showHelp && (
+      {/* Aide masquée quand le tutoriel est actif */}
+      {showHelp && !showTutorial && (
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
-          Utilisez les ↑ ↓ pour naviguer, Entrée pour sélectionner, Escape pour
-          retourner à la page d&apos;accueil
+          Utilisez ↑ ↓ pour naviguer | Entrée pour sélectionner | [?] Aide
         </div>
       )}
-      <Link href="/">
-        <button
-          id="back-button"
-          className="absolute top-4 left-4 px-8 py-4 font-drunkenhour text-3xl text-white bg-black/70 rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"
-        >
-          Retour
-        </button>
-      </Link>
+
+      <header className="mb-2 px-4 text-center">
+        <h1 className="font-broken-home text-2xl font-extrabold text-white drop-shadow-lg sm:text-3xl">
+          The Arcana of the Code
+        </h1>
+        <p className="font-broken-home text-sm text-gray-200 drop-shadow-lg sm:text-base">
+          Venez découvrir qui est Steve Retournay
+        </p>
+      </header>
+
       <button
-        onClick={() => setShowTutorial(true)}
+        onClick={() => setShowTutorial((prev) => !prev)}
         aria-label="Revoir le tutoriel"
         className="absolute top-4 right-4 h-12 w-12 rounded-full bg-black/70 font-drunkenhour text-3xl text-white shadow-lg transition hover:bg-red-600 focus:bg-red-600 focus:outline-2 focus:outline-white"
       >
         ?
       </button>
+
       {buttons.map((button, index) => (
         <MenuButton
           key={index}
@@ -121,6 +124,7 @@ export default function PortfolioPage() {
           type={button.type}
         />
       ))}
+
       {showTutorial && <TutorialOverlay onClose={closeTutorial} />}
     </motion.nav>
   );
