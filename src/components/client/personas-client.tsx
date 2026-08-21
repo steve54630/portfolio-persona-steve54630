@@ -1,6 +1,5 @@
 "use client";
 
-import AnimatedPhrase from "@/components/arcana-phrase";
 import PersonaButton from "@/components/persona-button";
 import useMouseActivity from "@/hooks/useMouse";
 import { IPersona } from "@/types/persona";
@@ -136,12 +135,6 @@ export default function PersonasClient({
                 />
               </div>
 
-              {/* Phrase Arcana sous l'image */}
-              {selectedPersona.arcana?.phrase && (
-                <div className="w-full bg-zinc-950/90 border-l-4 border-red-500 p-3 rounded-r-lg text-left">
-                  <AnimatedPhrase phrase={selectedPersona.arcana.phrase} />
-                </div>
-              )}
             </div>
           ) : (
             <div className="flex flex-col justify-center items-center h-full text-white text-center p-4">
