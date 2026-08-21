@@ -171,7 +171,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
       {showHelp && (
         <div
           role="status"
-          className="fixed bottom-4 right-4 hidden rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
         >
           [← / →] Naviguer | [ENTRÉE] Ouvrir | [ESC] Retour
         </div>

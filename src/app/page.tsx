@@ -92,8 +92,11 @@ export default function PortfolioPage() {
     >
       {/* Aide masquée quand le tutoriel est actif */}
       {showHelp && !showTutorial && (
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-3 py-1 rounded shadow-lg z-50 opacity-0 sm:opacity-100">
-          Utilisez ↑ ↓ pour naviguer | Entrée pour sélectionner | [?] Aide
+        <div
+          role="status"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+        >
+          [↑ / ↓] Naviguer | [ENTRÉE] Sélectionner | [H] Aide
         </div>
       )}
 
@@ -102,7 +105,7 @@ export default function PortfolioPage() {
         aria-label="Revoir le tutoriel"
         className="absolute top-4 right-4 z-20 h-12 w-12 rounded-full bg-black/70 font-drunkenhour text-3xl text-white shadow-lg transition hover:bg-red-600 focus:bg-red-600 focus:outline-2 focus:outline-white"
       >
-        ?
+        H
       </button>
 
       <div className="relative z-10 flex h-full max-h-screen w-full flex-col items-center justify-center overflow-y-auto px-4 py-4 sm:w-3/5 sm:items-start sm:pl-16 lg:w-1/2 lg:pl-24">

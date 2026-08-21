@@ -166,7 +166,7 @@ export function StatusViewer({ stats }: { stats: IStatus }) {
       {showHelp && !statOpen && (
         <div
           role="status"
-          className="fixed bottom-4 right-4 bg-black/90 backdrop-blur-md text-white text-xs px-4 py-2 rounded-full border border-red-500/50 shadow-lg z-40 font-mono tracking-wider uppercase hidden sm:block"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
         >
           [↑ / ↓] Sélectionner | [ESC] Retour
         </div>

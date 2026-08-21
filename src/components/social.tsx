@@ -263,8 +263,11 @@ function SocialDiagram({
       </div>
 
       {showHelp && !isMobile && (
-        <div className="fixed bottom-3 left-6 bg-black/90 text-white text-xs px-4 py-2 rounded-full border border-red-500/50 shadow-lg font-mono z-40">
-          [↑ / ↓ / ← / →] Sélectionner une stat | [ESC] {showInfoPanel ? "Masquer détails" : "Quitter"}
+        <div
+          role="status"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+        >
+          [↑ / ↓ / ← / →] Sélectionner | [ESC] {showInfoPanel ? "Masquer détails" : "Quitter"}
         </div>
       )}
     </div>

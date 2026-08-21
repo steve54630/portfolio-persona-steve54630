@@ -40,12 +40,16 @@ export default function HistoryClient({ experiences }: HistoryClientProps) {
             Retour
           </button>
         </Link>
-        {showHelp && (
-          <span className="hidden rounded bg-black/80 border border-zinc-800 px-3 py-1.5 text-sm font-mono text-zinc-300 shadow-lg sm:inline">
-            [ESC] Revenir au menu
-          </span>
-        )}
       </div>
+
+      {showHelp && (
+        <div
+          role="status"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+        >
+          [ESC] Retour
+        </div>
+      )}
 
       <header className="mb-14 text-center">
         <h1 className="font-drunkenhour text-5xl text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] sm:text-7xl">

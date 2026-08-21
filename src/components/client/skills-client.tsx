@@ -155,8 +155,8 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
 
   return (
     <div className="relative flex flex-col md:flex-row h-screen overflow-hidden text-white pt-20 md:pt-0">
-      {/* Bouton Retour & Infobulle dynamique en haut */}
-      <div className="absolute top-5 left-5 z-40 flex items-center gap-4">
+      {/* Bouton Retour */}
+      <div className="absolute top-5 left-5 z-40">
         <Link href="/">
           <button
             id="return-button"
@@ -165,18 +165,20 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
             Retour
           </button>
         </Link>
-        {showHelp && (
-          <span className="hidden sm:inline-block rounded bg-black/80 border border-zinc-800 px-3 py-1.5 text-xs font-mono text-zinc-300 shadow-lg">
-            {selectedSkill ? (
-              "[ESC] Fermer le détail"
-            ) : focusZone === "categories" ? (
-              "[↑/↓] Choisir catégorie | [ENTRÉE] Aller aux compétences | [ESC] Menu"
-            ) : (
-              "[FLÈCHES] Parcourir compétences | [ENTRÉE] Sélectionner | [ESC] Retour aux filtres"
-            )}
-          </span>
-        )}
       </div>
+
+      {showHelp && (
+        <div
+          role="status"
+          className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 rounded-full border border-red-500/50 bg-black/90 px-4 py-2 font-mono text-xs uppercase tracking-wider text-white shadow-lg backdrop-blur-md sm:block"
+        >
+          {selectedSkill
+            ? "[ESC] Fermer le détail"
+            : focusZone === "categories"
+              ? "[↑ / ↓] Choisir catégorie | [ENTRÉE] Aller aux compétences | [ESC] Menu"
+              : "[FLÈCHES] Parcourir compétences | [ENTRÉE] Sélectionner | [ESC] Retour aux filtres"}
+        </div>
+      )}
 
       {/* Colonne gauche : Catégories */}
       <aside className="w-full md:w-1/4 p-4 md:p-8 flex flex-col justify-center items-center">
