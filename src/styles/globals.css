@@ -81,27 +81,31 @@
   font-family: "DrunkenHour", sans-serif;
 }
 
-/*
- * menu-background.jpg est presque entierement noir, avec son seul motif
- * (des traits rouges/blancs) confine en bas a gauche. En bg-cover bg-center
- * plein ecran, un grand ecran large n'affiche quasiment que du noir uni —
- * effet de vide. Le degrade donne une profondeur qui remplit tout ecran
- * sans zone morte ; l'image reste ancree en bas a gauche comme un accent,
- * plutot qu'etiree sur toute la largeur.
- */
-/*
- * Fond dedie au menu principal : aucune photo, uniquement des degrades,
- * pour que la composition tienne sur n'importe quelle taille d'ecran sans
- * zone morte. Les sous-pages gardent .site-backdrop avec l'image.
- */
 .menu-backdrop {
-  background-color: #070606;
-  background-image: radial-gradient(
-      70% 60% at 8% 92%,
-      rgba(220, 38, 38, 0.22),
-      transparent 65%
-    ), radial-gradient(55% 55% at 92% 8%, rgba(127, 29, 29, 0.14), transparent 70%),
-    linear-gradient(155deg, #0c0a0a 0%, #070606 55%, #050404 100%);
+  position: relative;
+  background-color: #080607;
+  /* Génération du motif géométrique losanges / trame */
+  background-image: 
+    linear-gradient(135deg, rgba(185, 28, 28, 0.2) 25%, transparent 25%),
+    linear-gradient(225deg, rgba(185, 28, 28, 0.2) 25%, transparent 25%),
+    linear-gradient(315deg, rgba(185, 28, 28, 0.2) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(185, 28, 28, 0.2) 25%, transparent 25%);
+  background-size: 60px 60px;
+  background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+}
+
+/* Assombrissement léger à gauche */
+.menu-backdrop::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    #080607 0%,
+    rgba(8, 6, 7, 0.85) 30%,
+    rgba(8, 6, 7, 0.3) 100%
+  );
+  pointer-events: none;
 }
 
 .site-backdrop {
