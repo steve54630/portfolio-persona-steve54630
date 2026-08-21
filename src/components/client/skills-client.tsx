@@ -99,7 +99,7 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
           setFocusZone("skills");
         } else if (e.key === "Escape") {
           e.preventDefault();
-          router.push("/menu");
+          router.push("/");
         }
         return;
       }
@@ -157,7 +157,7 @@ export default function SkillsPage({ skills, categories }: SkillsPageProps) {
     <div className="relative flex flex-col md:flex-row h-screen overflow-hidden text-white pt-20 md:pt-0">
       {/* Bouton Retour & Infobulle dynamique en haut */}
       <div className="absolute top-5 left-5 z-40 flex items-center gap-4">
-        <Link href="/menu">
+        <Link href="/">
           <button
             id="return-button"
             className="rounded-lg bg-zinc-900 px-6 py-3 font-drunkenhour text-2xl sm:text-4xl text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-red-600 focus:bg-red-600 focus:outline-none"

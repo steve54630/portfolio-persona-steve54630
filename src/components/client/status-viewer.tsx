@@ -79,7 +79,7 @@ export function StatusViewer({ stats }: { stats: IStatus }) {
       </div>
 
       {/* Bouton Retour Persona */}
-      <Link className="absolute top-5 left-5 z-30" href="/menu">
+      <Link className="absolute top-5 left-5 z-30" href="/">
         <button
           id="back-button"
           className="px-6 py-3 font-drunkenhour text-2xl text-white bg-black/80 backdrop-blur-md border border-red-500/60 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"

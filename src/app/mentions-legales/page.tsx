@@ -21,7 +21,7 @@ export default function MentionsLegalesPage() {
 
   return (
     <div className="py-60 px-4 max-w-3xl mx-auto">
-      <Link href="/menu">
+      <Link href="/">
         <button
           id="back-button"
           className="absolute top-4 left-4 px-8 py-4 font-drunkenhour text-3xl text-white rounded-lg shadow-lg hover:scale-105 transform transition duration-300 focus:outline-none focus:bg-red-600 hover:bg-red-600"

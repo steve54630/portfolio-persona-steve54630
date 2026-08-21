@@ -32,7 +32,7 @@ export default function Error({
             Réessayer
           </button>
           <Link
-            href="/menu"
+            href="/"
             className="rounded-lg bg-gray-800 px-8 py-4 font-drunkenhour text-2xl text-white transition hover:scale-105 hover:bg-gray-700 focus:outline-2 focus:outline-offset-2 focus:outline-white"
           >
             Retour au menu

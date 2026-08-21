@@ -48,7 +48,7 @@ export default function PersonasClient({
         buttons[prevIndex].focus();
       } else if (e.key === "Escape") {
         e.preventDefault();
-        router.push("/menu");
+        router.push("/");
       }
     },
     [router]
@@ -86,7 +86,7 @@ export default function PersonasClient({
       </div>
 
       {/* Bouton Retour */}
-      <Link href="/menu" className="absolute top-4 left-4 z-30" prefetch={true}>
+      <Link href="/" className="absolute top-4 left-4 z-30" prefetch={true}>
         <button
           id="back-button"
           className="px-5 py-2.5 font-drunkenhour text-xl sm:text-2xl text-white bg-black/80 backdrop-blur-md border border-red-500/60 rounded-lg shadow-lg hover:bg-red-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-500"

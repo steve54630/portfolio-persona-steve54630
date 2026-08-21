@@ -105,7 +105,7 @@ export default function PortfolioPage() {
         ?
       </button>
 
-      <div className="relative z-10 flex h-full max-h-screen w-full flex-col items-center justify-center gap-0.5 overflow-y-auto px-4 py-4 sm:w-3/5 sm:items-start sm:pl-16 lg:w-1/2 lg:pl-24">
+      <div className="relative z-10 flex h-full max-h-screen w-full flex-col items-center justify-center overflow-y-auto px-4 py-4 sm:w-3/5 sm:items-start sm:pl-16 lg:w-1/2 lg:pl-24">
         <header className="px-4 text-center sm:px-0 sm:text-left">
           <h1 className="font-broken-home text-[min(7.5vh,3rem)] font-extrabold leading-[1.05] text-white drop-shadow-lg sm:text-[min(7.5vh,3.5rem)] lg:text-[min(7.5vh,4.75rem)]">
             The Arcana of the Code
@@ -115,6 +115,7 @@ export default function PortfolioPage() {
           </p>
         </header>
 
+        <menu className="mt-8 flex w-full flex-col items-center gap-0.5 sm:items-start">
         {buttons.map((button, index) => (
           <MenuButton
             key={index}
@@ -127,6 +128,7 @@ export default function PortfolioPage() {
             titleSizeClassName="text-[min(5.6vh,2.25rem)] leading-none sm:text-[min(5.6vh,2.6rem)] lg:text-[min(5.6vh,3.5rem)]"
           />
         ))}
+        </menu>
       </div>
 
       <div

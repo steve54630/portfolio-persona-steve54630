@@ -56,7 +56,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
           break;
         case "Escape":
           e.preventDefault();
-          router.push("/menu");
+          router.push("/");
           break;
       }
     };
@@ -69,7 +69,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
     return (
       <main className="site-backdrop flex min-h-screen flex-col items-center justify-center gap-6 p-5 text-center">
         <Link
-          href="/menu"
+          href="/"
           className="rounded-lg bg-black/80 px-8 py-4 font-drunkenhour text-3xl text-white shadow-lg backdrop-blur-md transition hover:bg-red-600 focus:bg-red-600 focus:outline-none"
         >
           Retour
@@ -91,7 +91,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
       </div>
 
       <Link
-        href="/menu"
+        href="/"
         id="return-button"
         className="absolute top-5 left-5 z-30 rounded-lg border border-red-500/60 bg-black/80 px-6 py-3 font-drunkenhour text-2xl text-white shadow-lg backdrop-blur-md transition duration-300 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
       >

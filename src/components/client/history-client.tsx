@@ -15,7 +15,7 @@ export default function HistoryClient({ experiences }: HistoryClientProps) {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
-        router.push("/menu");
+        router.push("/");
       }
     };
 
@@ -32,7 +32,7 @@ export default function HistoryClient({ experiences }: HistoryClientProps) {
       className="min-h-screen px-4 pb-20 pt-6 sm:px-8"
     >
       <div className="mb-10 flex flex-wrap items-center gap-4">
-        <Link href="/menu">
+        <Link href="/">
           <button
             id="back-button"
             className="rounded-lg bg-zinc-900 px-8 py-4 font-drunkenhour text-3xl text-white shadow-lg transition duration-300 hover:scale-105 hover:bg-red-600 focus:bg-red-600 focus:outline-none"
