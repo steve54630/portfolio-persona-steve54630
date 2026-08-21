@@ -77,7 +77,7 @@ export default function ConfidantBook({ confidants }: ConfidantBookProps) {
   }, []);
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-[url('/images/menu-background.jpg')] bg-cover p-5">
+    <main className="site-backdrop flex flex-col items-center justify-center min-h-screen p-5">
       {/* Bloc central qui prend presque tout l'écran */}
       <Link className="sm:absolute mb-5 sm:mb-0 top-5 left-5" href="/menu">
         <button

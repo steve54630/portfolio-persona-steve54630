@@ -80,7 +80,7 @@ export default function PersonasClient({
       transition={{ duration: 0.2 }}
       role="main"
       aria-label="Sélection des projets Persona"
-      className="relative h-screen w-full bg-[url('/images/menu-background.jpg')] bg-cover bg-center bg-fixed p-4 sm:p-6 flex flex-col sm:flex-row gap-6 items-center justify-center overflow-hidden"
+      className="site-backdrop relative h-screen w-full bg-fixed p-4 sm:p-6 flex flex-col sm:flex-row gap-6 items-center justify-center overflow-hidden"
     >
       <div className="sr-only" aria-live="polite">
         Utilisez les flèches haut et bas pour naviguer dans la liste des projets.

@@ -52,7 +52,7 @@ export default function PersonaPageClient({ persona }: PersonaProps) {
       transition={{ duration: 0.4 }}
       role="main"
       aria-label={`Fiche détaillée du Persona ${persona.title}`}
-      className="relative min-h-screen w-full bg-[url('/images/menu-background.jpg')] bg-cover bg-center bg-fixed p-4 sm:p-8 flex flex-col justify-center items-center overflow-x-hidden"
+      className="site-backdrop relative min-h-screen w-full bg-fixed p-4 sm:p-8 flex flex-col justify-center items-center overflow-x-hidden"
     >
       <div className="w-full max-w-6xl flex flex-col gap-6 mt-12 sm:mt-0">
         

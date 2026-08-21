@@ -87,7 +87,7 @@ export default function PortfolioPage() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col bg-[url('/images/menu-background.jpg')] bg-cover bg-center items-center justify-center h-screen"
+      className="site-backdrop flex flex-col items-center justify-center h-screen"
       aria-label="Menu principal navigable avec les fleches du clavier"
     >
       {/* Aide masquée quand le tutoriel est actif */}

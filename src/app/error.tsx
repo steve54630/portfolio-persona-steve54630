@@ -15,7 +15,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-6 bg-[url('/images/menu-background.jpg')] bg-cover bg-center px-4 text-center">
+    <main className="site-backdrop flex min-h-screen flex-col items-center justify-center gap-6 px-4 text-center">
       <div className="w-full max-w-md rounded-2xl border-2 border-red-600 bg-black/85 p-8 shadow-2xl">
         <h1 className="font-drunkenhour text-5xl text-white sm:text-6xl">
           Un imprévu est survenu

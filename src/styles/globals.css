@@ -81,6 +81,27 @@
   font-family: "DrunkenHour", sans-serif;
 }
 
+/*
+ * menu-background.jpg est presque entierement noir, avec son seul motif
+ * (des traits rouges/blancs) confine en bas a gauche. En bg-cover bg-center
+ * plein ecran, un grand ecran large n'affiche quasiment que du noir uni —
+ * effet de vide. Le degrade donne une profondeur qui remplit tout ecran
+ * sans zone morte ; l'image reste ancree en bas a gauche comme un accent,
+ * plutot qu'etiree sur toute la largeur.
+ */
+.site-backdrop {
+  background-color: #070606;
+  background-image: radial-gradient(
+      60% 55% at 12% 100%,
+      rgba(220, 38, 38, 0.25),
+      transparent 70%
+    ), radial-gradient(45% 45% at 100% 0%, rgba(127, 29, 29, 0.12), transparent 70%),
+    url("/images/menu-background.jpg");
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: left bottom, right top, left bottom;
+  background-size: cover, cover, min(70vw, 820px) auto;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

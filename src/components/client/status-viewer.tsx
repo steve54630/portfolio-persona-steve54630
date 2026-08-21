@@ -71,7 +71,7 @@ export function StatusViewer({ stats }: { stats: IStatus }) {
     <article
       role="main"
       aria-label="Fiche de statut du personnage"
-      className="relative min-h-screen w-full bg-[url('/images/menu-background.jpg')] bg-cover bg-center bg-fixed p-4 sm:p-8 flex flex-col sm:flex-row items-center justify-center gap-8 overflow-x-hidden"
+      className="site-backdrop relative min-h-screen w-full bg-fixed p-4 sm:p-8 flex flex-col sm:flex-row items-center justify-center gap-8 overflow-x-hidden"
     >
       {/* Aide vocale RGAA */}
       <div className="sr-only" aria-live="polite">
