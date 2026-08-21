@@ -1,13 +1,13 @@
-import { PersonaButtonProps } from "@/interface/persona";
 import { IPersona } from "@/types/persona";
+import { PersonaButtonProps } from "@/types/props";
 import Link from "next/link";
-import React, { ButtonHTMLAttributes, forwardRef } from "react";
+import { forwardRef } from "react";
 
 const PersonaButton = forwardRef<HTMLButtonElement, PersonaButtonProps>(
   ({ persona, ...props }: { persona: IPersona }, ref) => {
     return (
       <Link href={`/persona/${persona.id}`} {...props}>
-        <button className="group flex justify-center items-center flex-row mx-10 w-3/4 text-2xl sm:text-3xl" datatype="persona-button">
+        <button className="group flex justify-center items-center flex-row mx-10 w-3/4 text-xl sm:text-2xl" datatype="persona-button">
           <p className="rounded-2xl py-2 px-5 font-broken-home bg-red-600/70 text-white group-focus:text-black group-focus:bg-blue-600 group-hover:text-black group-hover:bg-blue-600">
             {persona.arcana.name}
           </p>
