@@ -97,12 +97,12 @@ export default function PortfolioPage() {
         </div>
       )}
 
-      <header className="mb-2 px-4 text-center">
-        <h1 className="font-broken-home text-2xl font-extrabold text-white drop-shadow-lg sm:text-3xl">
+      <header className="px-4 text-center">
+        <h1 className="font-broken-home text-[min(9.3vh,3.5rem)] font-extrabold leading-[1] text-white drop-shadow-lg sm:text-[min(9.3vh,4.25rem)] md:text-[min(9.3vh,5rem)] lg:text-[min(9.3vh,6.5rem)]">
           The Arcana of the Code
         </h1>
-        <p className="font-broken-home text-sm text-gray-200 drop-shadow-lg sm:text-base">
-          Venez découvrir qui est Steve Retournay
+        <p className="font-broken-home text-[min(2vh,1rem)] leading-tight text-gray-200 drop-shadow-lg sm:text-[min(2vh,1.125rem)]">
+          Venez decouvrir qui est Steve Retournay
         </p>
       </header>
 
